@@ -1,0 +1,151 @@
+.content-card {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.content-card h4 {
+  margin-bottom: 8px;
+}
+
+.content-card .role-title {
+  color: #f5c6cb;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.content-card .meta {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 16px;
+}
+
+.content-card .meta span {
+  margin-right: 20px;
+}
+
+.achievement-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.achievement-list li {
+  display: block;
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #fff;
+}
+
+.achievement-list li:before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: #fff;
+}
+
+.about-block {
+  margin-bottom: 30px;
+}
+
+.about-block h4 {
+  margin-bottom: 12px;
+}
+
+.education-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.education-row .school-details {
+  text-align: right;
+}
+
+.education-row .school-details p {
+  margin-bottom: 4px;
+}
+
+.project-card {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  padding: 24px;
+  height: 100%;
+  margin-bottom: 30px;
+}
+
+.project-card .project-org {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 12px;
+}
+
+.awards-list li {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 22px;
+  color: #fff;
+  transition: all 0.5s;
+}
+
+.service-item:hover .awards-list li {
+  color: #4a4a4a;
+}
+
+.contact-info {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.contact-info a {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  transition: all 0.3s;
+}
+
+.contact-info a:hover {
+  color: #f5c6cb;
+}
+
+.contact-info .contact-item {
+  margin-bottom: 30px;
+}
+
+.contact-info .contact-item p {
+  margin-bottom: 8px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.85;
+}
+
+.subsection-heading {
+  margin: 50px 0 30px;
+  text-align: center;
+}
+
+.subsection-heading h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.subsection-heading p {
+  font-size: 15px;
+  opacity: 0.9;
+}
