@@ -1,27 +1,4 @@
 (function($) {
-  // ── Theme toggle ──
-  var html = document.documentElement;
-  var themeBtn = document.getElementById("theme-toggle");
-  var themeIcon = themeBtn.querySelector("i");
-
-  function applyTheme(theme) {
-    html.setAttribute("data-theme", theme);
-    themeIcon.className = theme === "dark" ? "fa fa-sun-o" : "fa fa-moon-o";
-  }
-
-  var saved = localStorage.getItem("theme");
-  if (saved) {
-    applyTheme(saved);
-  } else {
-    applyTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-  }
-
-  themeBtn.addEventListener("click", function() {
-    var next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    applyTheme(next);
-    localStorage.setItem("theme", next);
-  });
-
   // ── Nav ──
   var navList = document.getElementById("nav");
   var mobileToggle = document.getElementById("mobile-nav-toggle");
