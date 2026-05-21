@@ -44,96 +44,75 @@
 
     <div id="page-wraper">
       <section class="section about-me" data-section="section1">
-        <div class="container">
-          <div class="section-heading">
-            <h2>About Me</h2>
-            <div class="line-dec"></div>
-            <span
-              >Masters of Business and Technology | Mitch Daniels School of Business,
-              Purdue '26 — bridging technology and business strategy for sustainable,
-              secure organizational growth.</span
-            >
-          </div>
-          <div class="left-image-post">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="left-image">
-                  <img src="assets/images/profile.jpg" alt="Deandra Lauren Rodricks" />
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="right-text about-block">
-                  <h4>Who I Am</h4>
-                  <p>
-                    I'm Deandra Lauren Rodricks, currently pursuing a Masters of Business
-                    and Technology at the Mitch Daniels School of Business, Purdue
-                    University, graduating in 2026.
+        <div class="about-scroll-stage" id="about-scroll-stage">
+          <div class="about-scroll-pin">
+            <div class="about-hero-scene">
+              <div class="about-hero-panel">
+                <figure class="about-hero-figure" aria-label="Deandra Lauren Rodricks">
+                  <div class="about-hero-image">
+                    <img src="assets/images/profile.jpg" alt="Deandra Lauren Rodricks" />
+                  </div>
+                  <figcaption class="about-hero-caption">Hi, I'm Deandra</figcaption>
+                  <p class="about-hero-lead">
+                    <span class="about-hero-lead-line">Masters of Business and Technology</span>
+                    <span class="about-hero-lead-line"
+                      >Mitch Daniels School of Business, Purdue '26</span
+                    >
                   </p>
+                </figure>
+                <div class="about-hero-content">
+                  <h2>
+                    Bridging technology and business strategy for sustainable, secure
+                    organizational growth.
+                  </h2>
                   <p>
-                    My journey blends technology and business: Magna Cum Laude graduate
-                    with dual degrees in Computer Science (University of Indianapolis)
-                    and Computer Engineering (Purdue University Indianapolis).
+                    I fast-tracked from intern to Cybersecurity Analyst at a managed service
+                    provider, thriving in high-pressure environments. I loved translating technical
+                    risk into confident business decisions. That passion brought me back to Purdue,
+                    where I am laser-focused on bridging technological potential with strategic
+                    organizational goals.
                   </p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="right-image-post">
-            <div class="row">
+        </div>
+
+        <div class="about-rest">
+          <div class="container">
+            <div class="row about-columns">
               <div class="col-md-6">
-                <div class="left-text about-block">
-                  <h4>From Cybersecurity to Business School</h4>
-                  <p>
-                    I fast-tracked from intern to Cybersecurity Analyst at a managed
-                    service provider, thriving in high-pressure environments. I loved
-                    translating technical risk into confident business decisions.
-                  </p>
-                  <p>
-                    That passion brought me back to Purdue, and I am now laser-focused
-                    on bridging technological potential with strategic organizational
-                    goals.
-                  </p>
+                <div class="about-card">
+                  <h4>What Drives Me</h4>
+                  <ul class="achievement-list">
+                    <li>
+                      Championing tech strategy that fuels secure, sustainable growth for
+                      organizations.
+                    </li>
+                    <li>
+                      Leveraging deep technical skills to solve complex business
+                      challenges.
+                    </li>
+                    <li>
+                      Building bridges between technical teams and executive stakeholders.
+                    </li>
+                  </ul>
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="right-image">
-                  <img src="assets/images/right-image.jpg" alt="" />
+                <div class="about-card">
+                  <h4>Beyond the Desk</h4>
+                  <p>
+                    When I'm not crafting tech strategy, you'll find me cooking something
+                    bold, planning my next adventure, or exploring a new dance routine (the
+                    5-year-old dancer in me never left).
+                  </p>
+                  <p>
+                    I'm an extroverted and optimistic collaborator—Enneagram Challenger +
+                    Loyalist and Predictive Index Altruist—driven by helping teams and
+                    organizations win.
+                  </p>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="about-block">
-                <h4>What Drives Me</h4>
-                <ul class="achievement-list">
-                  <li>
-                    Championing tech strategy that fuels secure, sustainable growth for
-                    organizations.
-                  </li>
-                  <li>
-                    Leveraging deep technical skills to solve complex business
-                    challenges.
-                  </li>
-                  <li>
-                    Building bridges between technical teams and executive stakeholders.
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="about-block">
-                <h4>Beyond the Desk</h4>
-                <p>
-                  When I'm not crafting tech strategy, you'll find me cooking something
-                  bold, planning my next adventure, or exploring a new dance routine (the
-                  5-year-old dancer in me never left).
-                </p>
-                <p>
-                  I'm an extroverted and optimistic collaborator—Enneagram Challenger +
-                  Loyalist and Predictive Index Altruist—driven by helping teams and
-                  organizations win.
-                </p>
               </div>
             </div>
           </div>
@@ -432,6 +411,7 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/custom.js"></script>
+    <script src="assets/js/about-hero.js"></script>
     <script>
       $("#nav li:first-child").addClass("active");
 
