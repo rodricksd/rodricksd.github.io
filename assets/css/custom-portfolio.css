@@ -1,3 +1,7 @@
+[data-section="section4"] {
+  min-height: auto;
+}
+
 /* About hero scroll transition */
 .about-me {
   color: var(--text);
@@ -165,11 +169,12 @@
 }
 
 .about-rest {
-  padding: 24px 0 16px;
+  padding: 24px 0 80px;
 }
 
 .about-me + .my-services .section-heading {
-  padding-top: 36px;
+  padding-top: 190px;
+  padding-bottom: 50px;
 }
 
 .about-rest .container {
@@ -380,6 +385,7 @@
   font-size: 15px;
   line-height: 24px;
   color: var(--text);
+  text-wrap: pretty;
 }
 
 .achievement-list li:before {
@@ -418,7 +424,14 @@
   border-radius: 4px;
   padding: 24px;
   height: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+}
+
+.project-card p {
+  color: var(--text);
+  font-size: 15px;
+  line-height: 24px;
+  margin-bottom: 0;
 }
 
 .project-card .project-org {
@@ -426,7 +439,35 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--meta-color);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+}
+
+.project-tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #C5A880;
+  border: 1px solid #C5A880;
+  border-radius: 2px;
+  padding: 2px 8px;
+  margin-bottom: 14px;
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.tech-pill {
+  font-size: 11px;
+  color: var(--meta-color);
+  background-color: var(--card-border);
+  border-radius: 2px;
+  padding: 3px 8px;
+  letter-spacing: 0.05em;
 }
 
 .awards-list li {
@@ -485,4 +526,107 @@
 .subsection-heading p {
   font-size: 15px;
   opacity: 0.9;
+}
+
+/* Project card hover trigger */
+.project-card {
+  position: relative;
+}
+
+.project-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.project-card:hover::after {
+  opacity: 1;
+}
+
+.project-details-btn {
+  display: none;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: none;
+  border: 1px solid #C5A880;
+  color: #C5A880;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  padding: 8px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.project-details-btn:hover {
+  background: #C5A880;
+  color: #fff;
+}
+
+.project-card:hover .project-details-btn {
+  display: block;
+}
+
+/* Modal */
+.project-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-modal-overlay.active {
+  display: flex;
+}
+
+.project-modal-box {
+  background: #f2ebe3;
+  border: 1px solid #C5A880;
+  border-radius: 4px;
+  padding: 36px;
+  width: 90%;
+  max-width: 760px;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.project-modal-box h3 {
+  color: var(--text);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--meta-color);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.project-modal-close:hover {
+  color: var(--text);
+}
+
+.project-modal-video {
+  margin-top: 20px;
+  border-radius: 4px;
+  overflow: hidden;
 }
