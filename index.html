@@ -286,6 +286,7 @@
                 <h4>LLM Workflow Automation</h4>
                 <p class="project-org">Consulting LLC</p>
                 <span class="project-tag">AI &amp; Automation</span>
+                <button class="project-details-btn" onclick="openModal('consulting-modal')">View Results &#8594;</button>
                 <p>
                   A consulting firm was burning time on tasks that didn't need a human.
                   I designed LLM-driven workflow automation for their junior analyst team,
@@ -307,6 +308,7 @@
                 <h4>Full-Stack Client Website &amp; API</h4>
                 <p class="project-org">DevOps and Tech Solutions | Product Owner</p>
                 <span class="project-tag">Product &amp; Engineering</span>
+                <button class="project-details-btn" onclick="openModal('devops-modal')">View Results &#8594;</button>
                 <p>
                   Took on the product owner role for a full-stack client website and API
                   build. That meant owning the backlog, defining security requirements and
@@ -476,6 +478,30 @@
           </div>
         </div>
       </section>
+    </div>
+
+    <!-- Consulting Modal -->
+    <div id="consulting-modal" class="project-modal-overlay" onclick="closeModalOnOverlay(event, 'consulting-modal')">
+      <div class="project-modal-box">
+        <button class="project-modal-close" onclick="closeModal('consulting-modal')">&times;</button>
+        <h3>LLM Workflow Automation</h3>
+        <p class="project-org" style="margin-bottom: 16px;">Consulting LLC</p>
+        <div class="project-modal-video">
+          <img src="assets/docs/consulting-results.jpeg" alt="AI Automation Consulting Project one-pager" style="width: 100%; border-radius: 4px; display: block;">
+        </div>
+      </div>
+    </div>
+
+    <!-- DevOps Modal -->
+    <div id="devops-modal" class="project-modal-overlay" onclick="closeModalOnOverlay(event, 'devops-modal')">
+      <div class="project-modal-box">
+        <button class="project-modal-close" onclick="closeModal('devops-modal')">&times;</button>
+        <h3>Full-Stack Client Website &amp; API</h3>
+        <p class="project-org" style="margin-bottom: 16px;">DevOps and Tech Solutions | Product Owner</p>
+        <div class="project-modal-video">
+          <img src="assets/docs/devops_onepager.jpg" alt="DevOps and Tech Solutions one-pager" style="width: 100%; border-radius: 4px; display: block;">
+        </div>
+      </div>
     </div>
 
     <!-- Project Modal -->

@@ -595,10 +595,10 @@
   border: 1px solid #C5A880;
   border-radius: 4px;
   padding: 36px;
-  width: 90%;
-  max-width: 760px;
+  width: 95%;
+  max-width: 1000px;
   position: relative;
-  max-height: 90vh;
+  max-height: 92vh;
   overflow-y: auto;
 }
 
