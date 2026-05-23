@@ -710,35 +710,106 @@
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
-  /* About hero — static stacked layout on mobile */
+
+  /* ===== ABOUT HERO: fully disable animation, stack everything ===== */
   .about-scroll-stage {
     height: auto !important;
   }
 
   .about-scroll-pin {
     position: relative !important;
+    top: auto !important;
     height: auto !important;
+    overflow: visible !important;
   }
 
+  .about-hero-scene,
+  .about-hero-scene.about-hero-scene--composed,
   .about-hero-scene.about-hero-scene--mobile-settled {
-    padding: 30px 20px 10px;
-    text-align: center;
+    position: relative !important;
+    height: auto !important;
+    display: block !important;
+    padding: 24px 16px !important;
   }
 
-  .about-hero-scene.about-hero-scene--mobile-settled .about-hero-panel {
-    padding: 20px 16px;
-    gap: 16px;
+  .about-hero-panel,
+  .about-hero-scene--composed .about-hero-panel {
+    position: relative !important;
+    height: auto !important;
+    transform: none !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 0 !important;
+    gap: 20px !important;
+    width: 100% !important;
   }
 
+  .about-hero-figure,
   .about-hero-scene.about-hero-scene--mobile-settled .about-hero-figure {
-    margin: 0 auto 8px;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+    gap: 12px !important;
   }
 
+  .about-hero-image,
+  .about-hero-image img {
+    max-width: min(260px, 65vw) !important;
+    max-height: none !important;
+  }
+
+  .about-hero-caption {
+    opacity: 1 !important;
+    transform: none !important;
+    max-height: none !important;
+    font-size: clamp(1.4rem, 6vw, 2rem) !important;
+    text-align: center !important;
+  }
+
+  .about-hero-lead {
+    opacity: 1 !important;
+    transform: none !important;
+    max-height: none !important;
+    text-align: center !important;
+  }
+
+  .about-hero-content,
   .about-hero-scene.about-hero-scene--mobile-settled .about-hero-content {
-    text-align: left;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    flex: none !important;
+    text-align: left !important;
   }
 
-  /* Section headings */
+  /* ===== ABOUT REST ===== */
+  .about-rest {
+    padding: 20px 0 40px !important;
+  }
+
+  .about-rest .container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .about-card {
+    margin-bottom: 24px;
+  }
+
+  /* ===== SECTION HEADINGS ===== */
   .section-heading {
     padding: 40px 20px 24px !important;
   }
@@ -748,21 +819,12 @@
     padding-bottom: 24px !important;
   }
 
-  /* Content cards */
+  /* ===== CONTENT CARDS ===== */
   .content-card {
     padding: 20px 16px;
   }
 
-  /* About section */
-  .about-rest {
-    padding: 20px 0 40px;
-  }
-
-  .about-card {
-    margin-bottom: 16px;
-  }
-
-  /* Education row stacks on mobile */
+  /* ===== EDUCATION ROW ===== */
   .education-row {
     flex-direction: column;
     gap: 4px;
@@ -772,53 +834,52 @@
     text-align: left;
   }
 
-  /* Service items */
+  /* ===== SERVICE ITEMS ===== */
   .service-item {
     padding: 30px 20px;
   }
 
-  /* Row gap between project card rows */
+  /* ===== PROJECT CARDS ===== */
+  .project-card::after,
+  .project-card:hover::after {
+    display: none !important;
+  }
+
+  .project-details-btn {
+    display: block !important;
+    position: static !important;
+    transform: none !important;
+    margin-top: 16px !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+
   .row[style*="margin-top"] {
     margin-top: 0 !important;
   }
 
-  /* Project cards — always show view button on touch devices */
-  .project-card:hover::after,
-  .project-card::after {
-    opacity: 0;
-  }
-
-  .project-details-btn {
-    display: block;
-    position: static;
-    transform: none;
-    margin-top: 16px;
-    width: 100%;
-    text-align: center;
-  }
-
-  /* Modal full-width on mobile */
+  /* ===== MODAL ===== */
   .project-modal-overlay {
-    align-items: flex-end;
+    align-items: flex-end !important;
   }
 
   .project-modal-box {
-    width: 100%;
-    max-width: 100%;
-    max-height: 90vh;
-    border-radius: 4px 4px 0 0;
-    padding: 24px 16px;
-    margin: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 90vh !important;
+    border-radius: 4px 4px 0 0 !important;
+    padding: 24px 16px !important;
+    margin: 0 !important;
   }
 
-  /* Section icon wrap */
+  /* ===== ICONS ===== */
   .section-icon-wrap {
-    width: 60px;
-    height: 60px;
-    font-size: 14px;
+    width: 60px !important;
+    height: 60px !important;
+    font-size: 14px !important;
   }
 
   .section-icon-wrap .fa-stack-2x {
-    font-size: 1.6em;
+    font-size: 1.6em !important;
   }
 }
