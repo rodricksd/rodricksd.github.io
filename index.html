@@ -332,6 +332,7 @@
                 <h4>Incident Response Tabletop Exercise</h4>
                 <p class="project-org">Non-Profit Organization</p>
                 <span class="project-tag">Cybersecurity</span>
+                <button class="project-details-btn" onclick="openModal('ir-modal')">View Timeline &#8594;</button>
                 <p>
                   Ran a full tabletop exercise to stress-test how ready an organization
                   actually was when things went wrong. That meant reviewing hardware and
@@ -352,6 +353,7 @@
                 <h4>OSA SmartRing</h4>
                 <p class="project-org">Purdue University Indianapolis</p>
                 <span class="project-tag">Hardware &amp; IoT</span>
+                <button class="project-details-btn" onclick="openModal('osa-modal')">View Results &#8594;</button>
                 <p>
                   Led a five-person team to design and build a wearable smart ring for
                   detecting obstructive sleep apnea. I owned the physical prototype design
@@ -488,6 +490,30 @@
         <p class="project-org" style="margin-bottom: 16px;">Consulting LLC</p>
         <div class="project-modal-video">
           <img src="assets/docs/consulting-results.jpeg" alt="AI Automation Consulting Project one-pager" style="width: 100%; border-radius: 4px; display: block;">
+        </div>
+      </div>
+    </div>
+
+    <!-- OSA Modal -->
+    <div id="osa-modal" class="project-modal-overlay" onclick="closeModalOnOverlay(event, 'osa-modal')">
+      <div class="project-modal-box">
+        <button class="project-modal-close" onclick="closeModal('osa-modal')">&times;</button>
+        <h3>OSA SmartRing</h3>
+        <p class="project-org" style="margin-bottom: 16px;">Purdue University Indianapolis</p>
+        <div class="project-modal-video">
+          <img src="assets/docs/OSA_poster.png" alt="OSA SmartRing project poster" style="width: 100%; border-radius: 4px; display: block;">
+        </div>
+      </div>
+    </div>
+
+    <!-- IR Tabletop Modal -->
+    <div id="ir-modal" class="project-modal-overlay" onclick="closeModalOnOverlay(event, 'ir-modal')">
+      <div class="project-modal-box">
+        <button class="project-modal-close" onclick="closeModal('ir-modal')">&times;</button>
+        <h3>Incident Response Tabletop Exercise</h3>
+        <p class="project-org" style="margin-bottom: 16px;">Non-Profit Organization</p>
+        <div class="project-modal-video">
+          <img src="assets/docs/ir_tabletop_final.jpg" alt="Incident Response Tabletop Exercise timeline" style="width: 100%; border-radius: 4px; display: block;">
         </div>
       </div>
     </div>
