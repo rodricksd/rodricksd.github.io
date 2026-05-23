@@ -243,7 +243,7 @@
   }
 
   .about-hero-scene.about-hero-scene--mobile-settled .about-hero-caption {
-    opacity: 0;
+    opacity: 1;
   }
 
   .about-hero-scene.about-hero-scene--mobile-settled {
@@ -710,6 +710,34 @@
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
+  /* About hero — static stacked layout on mobile */
+  .about-scroll-stage {
+    height: auto !important;
+  }
+
+  .about-scroll-pin {
+    position: relative !important;
+    height: auto !important;
+  }
+
+  .about-hero-scene.about-hero-scene--mobile-settled {
+    padding: 30px 20px 10px;
+    text-align: center;
+  }
+
+  .about-hero-scene.about-hero-scene--mobile-settled .about-hero-panel {
+    padding: 20px 16px;
+    gap: 16px;
+  }
+
+  .about-hero-scene.about-hero-scene--mobile-settled .about-hero-figure {
+    margin: 0 auto 8px;
+  }
+
+  .about-hero-scene.about-hero-scene--mobile-settled .about-hero-content {
+    text-align: left;
+  }
+
   /* Section headings */
   .section-heading {
     padding: 40px 20px 24px !important;
