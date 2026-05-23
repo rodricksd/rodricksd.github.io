@@ -66,7 +66,21 @@
     panel.style.setProperty("--panel-height", (bottom - top + 72) + "px");
   }
 
+  function applyMobileLayout() {
+    stage.style.height = "auto";
+    stage.style.setProperty("--scroll-progress", "1");
+    if (scene) {
+      scene.classList.add("about-hero-scene--composed");
+      scene.classList.add("about-hero-scene--mobile-settled");
+    }
+  }
+
   function updateScrollProgress() {
+    if (window.innerWidth <= 768) {
+      applyMobileLayout();
+      return;
+    }
+
     if (prefersReducedMotion) {
       stage.style.setProperty("--scroll-progress", "1");
       if (scene) scene.classList.add("about-hero-scene--composed");
