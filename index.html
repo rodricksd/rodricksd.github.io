@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="assets/css/templatemo-style.css" />
     <link rel="stylesheet" href="assets/css/owl.css" />
     <link rel="stylesheet" href="assets/css/lightbox.css" />
-    <link rel="stylesheet" href="assets/css/custom-portfolio.css" />
+    <link rel="stylesheet" href="assets/css/custom-portfolio.css?v=2" />
   </head>
 
   <body>
@@ -259,6 +259,7 @@
           <div class="row">
             <div class="col-md-4">
               <div class="project-card">
+                <i class="fa fa-microphone project-icon"></i>
                 <h4>AI Voice Agent</h4>
                 <p class="project-org">Non-Profit Tech Organization</p>
                 <span class="project-tag">AI &amp; Automation</span>
@@ -283,6 +284,7 @@
             </div>
             <div class="col-md-4">
               <div class="project-card">
+                <i class="fa fa-cogs project-icon"></i>
                 <h4>LLM Workflow Automation</h4>
                 <p class="project-org">Consulting LLC</p>
                 <span class="project-tag">AI &amp; Automation</span>
@@ -305,6 +307,7 @@
             </div>
             <div class="col-md-4">
               <div class="project-card">
+                <i class="fa fa-code project-icon"></i>
                 <h4>Full-Stack Client Website &amp; API</h4>
                 <p class="project-org">DevOps and Tech Solutions | Product Owner</p>
                 <span class="project-tag">Product &amp; Engineering</span>
@@ -329,6 +332,7 @@
           <div class="row" style="margin-top: 50px;">
             <div class="col-md-4">
               <div class="project-card">
+                <i class="fa fa-shield project-icon"></i>
                 <h4>Incident Response Tabletop Exercise</h4>
                 <p class="project-org">Non-Profit Organization</p>
                 <span class="project-tag">Cybersecurity</span>
@@ -350,6 +354,7 @@
             </div>
             <div class="col-md-4">
               <div class="project-card">
+                <i class="fa fa-heartbeat project-icon"></i>
                 <h4>OSA SmartRing</h4>
                 <p class="project-org">Purdue University Indianapolis</p>
                 <span class="project-tag">Hardware &amp; IoT</span>
@@ -371,9 +376,11 @@
             </div>
             <div class="col-md-4">
               <div class="project-card">
+                <i class="fa fa-cube project-icon"></i>
                 <h4>3D Teeth Modelling Software</h4>
                 <p class="project-org">University of Indianapolis</p>
                 <span class="project-tag">Software Engineering</span>
+                <button class="project-details-btn" onclick="openModal('teeth-modal')">View Results &#8594;</button>
                 <p>
                   Built software that ingested raw topographic dental data and rendered it
                   into 3D models of teeth, giving dental researchers a precise tool to
@@ -406,7 +413,7 @@
           <div class="row">
             <div class="col-md-4">
               <div class="service-item">
-                <div class="first-service-icon service-icon"></div>
+                <i class="fa fa-users service-icon section-icon"></i>
                 <h4>Leadership</h4>
                 <ul class="awards-list">
                   <li>
@@ -423,7 +430,11 @@
             </div>
             <div class="col-md-4">
               <div class="service-item">
-                <div class="second-service-icon service-icon"></div>
+                <span class="fa-stack section-icon-wrap">
+                  <i class="fa fa-file-text-o fa-stack-2x"></i>
+                  <i class="fa fa-circle fa-stack-1x cert-seal-bg"></i>
+                  <i class="fa fa-star fa-stack-1x cert-seal-star"></i>
+                </span>
                 <h4>Certifications</h4>
                 <ul class="awards-list">
                   <li>Business Analytics, Harvard Business School Online</li>
@@ -434,7 +445,7 @@
             </div>
             <div class="col-md-4">
               <div class="service-item">
-                <div class="third-service-icon service-icon"></div>
+                <i class="fa fa-trophy service-icon section-icon"></i>
                 <h4>Awards &amp; Honors</h4>
                 <ul class="awards-list">
                   <li>TechPoint Xtern Value Award - Investment in Community</li>
@@ -490,6 +501,18 @@
         <p class="project-org" style="margin-bottom: 16px;">Consulting LLC</p>
         <div class="project-modal-video">
           <img src="assets/docs/consulting-results.jpeg" alt="AI Automation Consulting Project one-pager" style="width: 100%; border-radius: 4px; display: block;">
+        </div>
+      </div>
+    </div>
+
+    <!-- 3D Teeth Modal -->
+    <div id="teeth-modal" class="project-modal-overlay" onclick="closeModalOnOverlay(event, 'teeth-modal')">
+      <div class="project-modal-box">
+        <button class="project-modal-close" onclick="closeModal('teeth-modal')">&times;</button>
+        <h3>3D Teeth Modelling Software</h3>
+        <p class="project-org" style="margin-bottom: 16px;">University of Indianapolis</p>
+        <div class="project-modal-video">
+          <img src="assets/docs/3D_teeth_model_poster.png" alt="3D Teeth Modelling Software poster" style="width: 100%; border-radius: 4px; display: block;">
         </div>
       </div>
     </div>

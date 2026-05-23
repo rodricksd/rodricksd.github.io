@@ -2,6 +2,7 @@
   min-height: auto;
 }
 
+
 /* About hero scroll transition */
 .about-me {
   color: var(--text);
@@ -343,6 +344,7 @@
 .content-card {
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
+  border-left: 3px solid #A53030;
   border-radius: 4px;
   padding: 30px;
   margin-bottom: 30px;
@@ -427,6 +429,13 @@
   margin-bottom: 40px;
 }
 
+.project-icon {
+  display: block;
+  font-size: 22px;
+  color: #A53030;
+  margin-bottom: 14px;
+}
+
 .project-card p {
   color: var(--text);
   font-size: 15px;
@@ -470,13 +479,81 @@
   letter-spacing: 0.05em;
 }
 
+.service-item .section-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  font-size: 28px;
+  color: #A53030;
+  border: 2px solid #A53030;
+  border-radius: 50%;
+  margin-bottom: 30px;
+  background-image: none;
+}
+
+.section-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border: 2px solid #A53030;
+  border-radius: 50%;
+  margin-bottom: 30px;
+  font-size: 16px;
+  color: #A53030;
+  position: relative;
+}
+
+.section-icon-wrap .fa-stack-2x {
+  font-size: 1.8em;
+  color: #A53030;
+}
+
+.section-icon-wrap .cert-seal-bg {
+  font-size: 0.7em;
+  color: #f2ebe3;
+  position: absolute;
+  bottom: 8px;
+  right: 6px;
+  left: auto;
+  top: auto;
+}
+
+.section-icon-wrap .cert-seal-star {
+  font-size: 0.4em;
+  color: #A53030;
+  position: absolute;
+  bottom: 14px;
+  right: 11px;
+  left: auto;
+  top: auto;
+}
+
+.awards-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .awards-list li {
   display: block;
+  position: relative;
+  padding-left: 18px;
   margin-bottom: 10px;
   font-size: 15px;
   line-height: 22px;
   color: var(--text);
   transition: all 0.5s;
+}
+
+.awards-list li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: #C5A880;
 }
 
 .service-item:hover .awards-list li {
@@ -629,4 +706,91 @@
   margin-top: 20px;
   border-radius: 4px;
   overflow: hidden;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  /* Section headings */
+  .section-heading {
+    padding: 40px 20px 24px !important;
+  }
+
+  .about-me + .my-services .section-heading {
+    padding-top: 60px !important;
+    padding-bottom: 24px !important;
+  }
+
+  /* Content cards */
+  .content-card {
+    padding: 20px 16px;
+  }
+
+  /* About section */
+  .about-rest {
+    padding: 20px 0 40px;
+  }
+
+  .about-card {
+    margin-bottom: 16px;
+  }
+
+  /* Education row stacks on mobile */
+  .education-row {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .education-row .school-details {
+    text-align: left;
+  }
+
+  /* Service items */
+  .service-item {
+    padding: 30px 20px;
+  }
+
+  /* Row gap between project card rows */
+  .row[style*="margin-top"] {
+    margin-top: 0 !important;
+  }
+
+  /* Project cards — always show view button on touch devices */
+  .project-card:hover::after,
+  .project-card::after {
+    opacity: 0;
+  }
+
+  .project-details-btn {
+    display: block;
+    position: static;
+    transform: none;
+    margin-top: 16px;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Modal full-width on mobile */
+  .project-modal-overlay {
+    align-items: flex-end;
+  }
+
+  .project-modal-box {
+    width: 100%;
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 4px 4px 0 0;
+    padding: 24px 16px;
+    margin: 0;
+  }
+
+  /* Section icon wrap */
+  .section-icon-wrap {
+    width: 60px;
+    height: 60px;
+    font-size: 14px;
+  }
+
+  .section-icon-wrap .fa-stack-2x {
+    font-size: 1.6em;
+  }
 }
