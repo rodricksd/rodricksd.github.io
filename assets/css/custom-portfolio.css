@@ -89,6 +89,28 @@
   overflow: hidden;
 }
 
+.about-caption-bow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 2px;
+}
+
+.bow-line {
+  width: 60px;
+  height: 1px;
+  background: #A53030;
+  flex-shrink: 0;
+  opacity: calc(clamp(0, (var(--scroll-progress) - 0.05) / 0.5, 1));
+}
+
+.bow-icon {
+  color: #A53030;
+  font-size: 14px;
+}
+
 .about-hero-lead {
   display: flex;
   flex-direction: column;
@@ -110,6 +132,7 @@
   font-size: 16px;
   line-height: 1.45;
   color: var(--text);
+  text-align: center;
 }
 
 .about-hero-figure.about-hero-figure--settled {
@@ -139,6 +162,10 @@
   border: none;
   box-shadow: none;
   z-index: 1;
+}
+
+.text-accent {
+  color: #A53030;
 }
 
 .about-hero-content h2 {
@@ -560,6 +587,18 @@
   color: #4a4a4a;
 }
 
+/* DLR Logo — nav left side */
+.dlr-logo-nav {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
 .contact-info {
   text-align: center;
   padding: 20px 0;
@@ -773,6 +812,11 @@
     font-size: clamp(1.4rem, 6vw, 2rem) !important;
     text-align: center !important;
   }
+
+  .bow-line {
+    opacity: 1 !important;
+  }
+
 
   .about-hero-lead {
     opacity: 1 !important;
