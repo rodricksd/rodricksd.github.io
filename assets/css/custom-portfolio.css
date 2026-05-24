@@ -587,15 +587,15 @@
   color: #4a4a4a;
 }
 
-/* DLR Logo — nav left side */
+/* DLR Logo — left side of nav */
 .dlr-logo-nav {
   position: absolute;
   left: 20px;
   top: 50%;
   transform: translateY(-50%);
-  width: 60px;
+  width: 70px;
   height: auto;
-  display: block;
+  object-fit: contain;
   pointer-events: none;
 }
 
