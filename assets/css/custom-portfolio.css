@@ -39,7 +39,7 @@
   width: 100%;
   height: 100%;
   border-radius: 12px;
-  box-shadow: 0 0 0 2px rgba(197, 168, 128, 0);
+  box-shadow: 0 0 0 2px rgba(204, 34, 0, 0);
   transition: box-shadow 0.5s ease;
 }
 
@@ -56,7 +56,6 @@
   z-index: 2;
   margin: 0;
   transition: none;
-  will-change: transform, left;
 }
 
 .about-hero-image {
@@ -148,7 +147,7 @@
   color: var(--text);
   margin: 0 0 16px;
   padding-bottom: 16px;
-  border-bottom: 2px solid #c5a880;
+  border-bottom: 2px solid #D4AF37;
 }
 
 .about-hero-content p {
@@ -166,7 +165,7 @@
   width: 100%;
   transform: translateY(-50%);
   height: var(--panel-height, 520px);
-  box-shadow: 0 0 0 2px rgba(197, 168, 128, 1);
+  box-shadow: 0 0 0 2px rgba(204, 34, 0, 1);
 }
 
 .about-rest {
@@ -303,7 +302,7 @@
     width: 100%;
     max-width: 980px;
     padding: 32px 36px;
-    box-shadow: 0 0 0 2px rgba(197, 168, 128, 1);
+    box-shadow: 0 0 0 2px rgba(204, 34, 0, 1);
     transition: none;
     position: relative;
     top: auto;
@@ -344,7 +343,7 @@
 .content-card {
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-left: 3px solid #A53030;
+  border-left: 3px solid #CC2200;
   border-radius: 4px;
   padding: 30px;
   margin-bottom: 30px;
@@ -355,7 +354,7 @@
 }
 
 .content-card .role-title {
-  color: #C5A880;
+  color: #D4AF37;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -394,7 +393,7 @@
   content: "▹";
   position: absolute;
   left: 0;
-  color: #C5A880;
+  color: #D4AF37;
 }
 
 .about-block {
@@ -432,7 +431,7 @@
 .project-icon {
   display: block;
   font-size: 22px;
-  color: #A53030;
+  color: #CC2200;
   margin-bottom: 14px;
 }
 
@@ -456,8 +455,8 @@
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #C5A880;
-  border: 1px solid #C5A880;
+  color: #D4AF37;
+  border: 1px solid #D4AF37;
   border-radius: 2px;
   padding: 2px 8px;
   margin-bottom: 14px;
@@ -486,8 +485,8 @@
   width: 70px;
   height: 70px;
   font-size: 28px;
-  color: #A53030;
-  border: 2px solid #A53030;
+  color: #CC2200;
+  border: 2px solid #CC2200;
   border-radius: 50%;
   margin-bottom: 30px;
   background-image: none;
@@ -499,22 +498,22 @@
   justify-content: center;
   width: 70px;
   height: 70px;
-  border: 2px solid #A53030;
+  border: 2px solid #CC2200;
   border-radius: 50%;
   margin-bottom: 30px;
   font-size: 16px;
-  color: #A53030;
+  color: #CC2200;
   position: relative;
 }
 
 .section-icon-wrap .fa-stack-2x {
   font-size: 1.8em;
-  color: #A53030;
+  color: #CC2200;
 }
 
 .section-icon-wrap .cert-seal-bg {
   font-size: 0.7em;
-  color: #f2ebe3;
+  color: #ffffff;
   position: absolute;
   bottom: 8px;
   right: 6px;
@@ -524,7 +523,7 @@
 
 .section-icon-wrap .cert-seal-star {
   font-size: 0.4em;
-  color: #A53030;
+  color: #CC2200;
   position: absolute;
   bottom: 14px;
   right: 11px;
@@ -553,11 +552,11 @@
   content: "▹";
   position: absolute;
   left: 0;
-  color: #C5A880;
+  color: #D4AF37;
 }
 
 .service-item:hover .awards-list li {
-  color: #4a4a4a;
+  color: #0A1530;
 }
 
 .contact-info {
@@ -573,7 +572,7 @@
 }
 
 .contact-info a:hover {
-  color: #C5A880;
+  color: #D4AF37;
 }
 
 .contact-info .contact-item {
@@ -631,8 +630,8 @@
   bottom: 20px;
   right: 20px;
   background: none;
-  border: 1px solid #C5A880;
-  color: #C5A880;
+  border: 1px solid #D4AF37;
+  color: #D4AF37;
   font-size: 13px;
   letter-spacing: 0.08em;
   padding: 8px 20px;
@@ -644,7 +643,7 @@
 }
 
 .project-details-btn:hover {
-  background: #C5A880;
+  background: #D4AF37;
   color: #fff;
 }
 
@@ -668,8 +667,8 @@
 }
 
 .project-modal-box {
-  background: #f2ebe3;
-  border: 1px solid #C5A880;
+  background: #ffffff;
+  border: 1px solid #D4AF37;
   border-radius: 4px;
   padding: 36px;
   width: 95%;

@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Color Palette Preview — Deandra Lauren Rodricks</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #0e0e0e;
+      color: #fff;
+      padding: 40px 24px 60px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      text-align: center;
+      margin-bottom: 8px;
+      color: #e8e4de;
+    }
+    .page-sub {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 52px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+
+    /* ── palette card shell ── */
+    .palette {
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 6px 36px rgba(0,0,0,0.55);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .palette:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 56px rgba(0,0,0,0.65);
+    }
+
+    /* header strip */
+    .p-header {
+      padding: 14px 20px 12px;
+      background: #181818;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .p-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 0.07em;
+      color: #e8e4de;
+    }
+    .p-header .tone {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    /* simulated nav */
+    .p-nav {
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .p-nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 0.07em;
+    }
+    .p-nav-links {
+      display: flex;
+      gap: 16px;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+
+    /* hero */
+    .p-hero {
+      padding: 28px 20px 20px;
+    }
+    .p-hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      margin-bottom: 5px;
+    }
+    .p-hero-title {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .p-hero-rule {
+      height: 1px;
+      width: 40px;
+      margin-bottom: 14px;
+    }
+    .p-hero-bio {
+      font-size: 12.5px;
+      line-height: 1.7;
+      opacity: 0.75;
+    }
+
+    /* cards row */
+    .p-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 16px 20px;
+    }
+    .p-card {
+      border-radius: 2px;
+      padding: 12px 14px;
+    }
+    .p-card-tag {
+      font-size: 8.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .p-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .p-card-body {
+      font-size: 10.5px;
+      line-height: 1.6;
+      opacity: 0.65;
+    }
+
+    /* swatches */
+    .p-swatches {
+      display: flex;
+      gap: 8px;
+      padding: 14px 20px 16px;
+      flex-wrap: wrap;
+    }
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .swatch-dot {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .swatch-hex {
+      font-size: 8px;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.04em;
+      color: #ccc;
+    }
+    .swatch-lbl {
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #666;
+    }
+
+    /* pick button */
+    .pick-btn {
+      display: block;
+      margin: 0 20px 20px;
+      padding: 10px;
+      text-align: center;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      background: transparent;
+      font-family: 'Lato', sans-serif;
+      transition: opacity 0.15s;
+    }
+    .pick-btn:hover { opacity: 0.6; }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #3a3a3a;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Deandra Lauren Rodricks</h1>
+  <p class="page-sub">Color Palette Preview &mdash; 40 Options &mdash; Personal Brand</p>
+
+  <div class="grid" id="grid"></div>
+
+  <p class="footer-note">Hover each card &mdash; tell Claude which palette (or mix) to apply</p>
+
+<script>
+const PALETTES = [
+  /* ── CLASSIC DARK NAV / WHITE BODY ── */
+  {
+    name: "Noir Royale",
+    tone: "Chanel Energy",
+    nav:    { bg: "#0D0D0D", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#1A1A1A" },
+    card:   { bg: "#F2EEE8", border: "rgba(26,26,26,0.09)" },
+    accent: "#C9A84C",
+    swatches: [
+      { color:"#0D0D0D", hex:"#0D0D0D", lbl:"Nav"  },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body" },
+      { color:"#F2EEE8", hex:"#F2EEE8", lbl:"Card" },
+      { color:"#C9A84C", hex:"#C9A84C", lbl:"Gold" },
+      { color:"#1A1A1A", hex:"#1A1A1A", lbl:"Text" },
+    ]
+  },
+  {
+    name: "Velvet Sovereign",
+    tone: "Royal Authority",
+    nav:    { bg: "#1A0A2E", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#1A0A2E" },
+    card:   { bg: "#EDE8F5", border: "rgba(26,10,46,0.1)" },
+    accent: "#D4AF37",
+    swatches: [
+      { color:"#1A0A2E", hex:"#1A0A2E", lbl:"Nav"     },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"    },
+      { color:"#EDE8F5", hex:"#EDE8F5", lbl:"Card"    },
+      { color:"#D4AF37", hex:"#D4AF37", lbl:"Gold"    },
+      { color:"#7B5EA7", hex:"#7B5EA7", lbl:"Amethyst"},
+    ]
+  },
+  {
+    name: "Cyber Maison",
+    tone: "Tech Meets Luxury",
+    nav:    { bg: "#0C0F1A", text: "#E8E4DE" },
+    body:   { bg: "#0C0F1A", text: "#E8E4DE" },
+    card:   { bg: "#141829", border: "rgba(0,212,170,0.25)" },
+    accent: "#00D4AA",
+    accentB:"#C9A84C",
+    swatches: [
+      { color:"#0C0F1A", hex:"#0C0F1A", lbl:"Base" },
+      { color:"#141829", hex:"#141829", lbl:"Card" },
+      { color:"#00D4AA", hex:"#00D4AA", lbl:"Teal" },
+      { color:"#C9A84C", hex:"#C9A84C", lbl:"Gold" },
+      { color:"#E8E4DE", hex:"#E8E4DE", lbl:"Text" },
+    ]
+  },
+  {
+    name: "Maison Prestige",
+    tone: "LV / Old Money",
+    nav:    { bg: "#2C1810", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#2C1810" },
+    card:   { bg: "#F0E8DC", border: "rgba(44,24,16,0.1)" },
+    accent: "#B8860B",
+    swatches: [
+      { color:"#2C1810", hex:"#2C1810", lbl:"Nav"  },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body" },
+      { color:"#F0E8DC", hex:"#F0E8DC", lbl:"Card" },
+      { color:"#B8860B", hex:"#B8860B", lbl:"Gold" },
+      { color:"#7A4A2A", hex:"#7A4A2A", lbl:"Tan"  },
+    ]
+  },
+  {
+    name: "Rose Noir",
+    tone: "Dior / Feminine Power",
+    nav:    { bg: "#1A0810", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#1A0810" },
+    card:   { bg: "#F5E6EA", border: "rgba(26,8,16,0.08)" },
+    accent: "#B76E79",
+    swatches: [
+      { color:"#1A0810", hex:"#1A0810", lbl:"Nav"      },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"     },
+      { color:"#F5E6EA", hex:"#F5E6EA", lbl:"Blush"    },
+      { color:"#B76E79", hex:"#B76E79", lbl:"Rose Gold"},
+      { color:"#8A3A4A", hex:"#8A3A4A", lbl:"Crimson"  },
+    ]
+  },
+  {
+    name: "Emerald Court",
+    tone: "Gucci Coded",
+    nav:    { bg: "#0A2318", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#0A2318" },
+    card:   { bg: "#DFF0DF", border: "rgba(10,35,24,0.1)" },
+    accent: "#D4AF37",
+    swatches: [
+      { color:"#0A2318", hex:"#0A2318", lbl:"Forest" },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"   },
+      { color:"#DFF0DF", hex:"#DFF0DF", lbl:"Sage"   },
+      { color:"#D4AF37", hex:"#D4AF37", lbl:"Gold"   },
+      { color:"#3A7A5A", hex:"#3A7A5A", lbl:"Green"  },
+    ]
+  },
+  {
+    name: "Crimson Citadel",
+    tone: "Power Red",
+    nav:    { bg: "#2D0A0A", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#2D0A0A" },
+    card:   { bg: "#F5E0E0", border: "rgba(45,10,10,0.1)" },
+    accent: "#C9A84C",
+    accentB:"#8B0000",
+    swatches: [
+      { color:"#2D0A0A", hex:"#2D0A0A", lbl:"Crimson" },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"    },
+      { color:"#F5E0E0", hex:"#F5E0E0", lbl:"Card"    },
+      { color:"#8B0000", hex:"#8B0000", lbl:"Red"     },
+      { color:"#C9A84C", hex:"#C9A84C", lbl:"Gold"    },
+    ]
+  },
+  {
+    name: "Obsidian Pearl",
+    tone: "Minimal Platinum",
+    nav:    { bg: "#090909", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#0D0D0D" },
+    card:   { bg: "#F0F0F0", border: "rgba(0,0,0,0.07)" },
+    accent: "#A8A8A8",
+    swatches: [
+      { color:"#090909", hex:"#090909", lbl:"Obsidian" },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"     },
+      { color:"#F0F0F0", hex:"#F0F0F0", lbl:"Card"     },
+      { color:"#C0C0C0", hex:"#C0C0C0", lbl:"Silver"   },
+      { color:"#6A6A6A", hex:"#6A6A6A", lbl:"Slate"    },
+    ]
+  },
+  {
+    name: "Midnight Orchid",
+    tone: "Dark Glamour",
+    nav:    { bg: "#0D0A1A", text: "#F0ECFF" },
+    body:   { bg: "#0D0A1A", text: "#F0ECFF" },
+    card:   { bg: "#1A1430", border: "rgba(155,127,199,0.3)" },
+    accent: "#9B7FC7",
+    swatches: [
+      { color:"#0D0A1A", hex:"#0D0A1A", lbl:"Base"   },
+      { color:"#1A1430", hex:"#1A1430", lbl:"Card"   },
+      { color:"#9B7FC7", hex:"#9B7FC7", lbl:"Orchid" },
+      { color:"#D4AF37", hex:"#D4AF37", lbl:"Gold"   },
+      { color:"#F0ECFF", hex:"#F0ECFF", lbl:"Text"   },
+    ]
+  },
+  {
+    name: "Bronze Couture",
+    tone: "Warm Dark Luxury",
+    nav:    { bg: "#1A1008", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#1A1008" },
+    card:   { bg: "#F0E2CC", border: "rgba(26,16,8,0.1)" },
+    accent: "#CD7F32",
+    swatches: [
+      { color:"#1A1008", hex:"#1A1008", lbl:"Dark"   },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"   },
+      { color:"#F0E2CC", hex:"#F0E2CC", lbl:"Linen"  },
+      { color:"#CD7F32", hex:"#CD7F32", lbl:"Bronze" },
+      { color:"#8B5E2A", hex:"#8B5E2A", lbl:"Cognac" },
+    ]
+  },
+  {
+    name: "Cobalt Prestige",
+    tone: "Navy Aristocracy",
+    nav:    { bg: "#0A0F2E", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#0A0F2E" },
+    card:   { bg: "#DDE3F5", border: "rgba(10,15,46,0.1)" },
+    accent: "#D4AF37",
+    swatches: [
+      { color:"#0A0F2E", hex:"#0A0F2E", lbl:"Navy"  },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"  },
+      { color:"#DDE3F5", hex:"#DDE3F5", lbl:"Card"  },
+      { color:"#D4AF37", hex:"#D4AF37", lbl:"Gold"  },
+      { color:"#4A6FA5", hex:"#4A6FA5", lbl:"Cobalt"},
+    ]
+  },
+  {
+    name: "Sage Maison",
+    tone: "Quiet Luxury",
+    nav:    { bg: "#0F1A0F", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#0F1A0F" },
+    card:   { bg: "#DFF0D8", border: "rgba(15,26,15,0.09)" },
+    accent: "#B8860B",
+    swatches: [
+      { color:"#0F1A0F", hex:"#0F1A0F", lbl:"Forest"},
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"  },
+      { color:"#DFF0D8", hex:"#DFF0D8", lbl:"Sage"  },
+      { color:"#B8860B", hex:"#B8860B", lbl:"Gold"  },
+      { color:"#5A7A4A", hex:"#5A7A4A", lbl:"Herb"  },
+    ]
+  },
+  {
+    name: "Titanium Edge",
+    tone: "Cold Tech Power",
+    nav:    { bg: "#0F1217", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#0F1217" },
+    card:   { bg: "#E2E8EE", border: "rgba(15,18,23,0.08)" },
+    accent: "#4D9FFF",
+    swatches: [
+      { color:"#0F1217", hex:"#0F1217", lbl:"Steel" },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"  },
+      { color:"#E2E8EE", hex:"#E2E8EE", lbl:"Card"  },
+      { color:"#4D9FFF", hex:"#4D9FFF", lbl:"Blue"  },
+      { color:"#A8B4C4", hex:"#A8B4C4", lbl:"Silver"},
+    ]
+  },
+  {
+    name: "Champagne Slate",
+    tone: "Understated Executive",
+    nav:    { bg: "#2A2D35", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#2A2D35" },
+    card:   { bg: "#EFE8DC", border: "rgba(42,45,53,0.09)" },
+    accent: "#D4A853",
+    swatches: [
+      { color:"#2A2D35", hex:"#2A2D35", lbl:"Slate"  },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"   },
+      { color:"#EFE8DC", hex:"#EFE8DC", lbl:"Card"   },
+      { color:"#D4A853", hex:"#D4A853", lbl:"Gold"   },
+      { color:"#8A8F9A", hex:"#8A8F9A", lbl:"Pewter" },
+    ]
+  },
+  {
+    name: "Scarlet Noir",
+    tone: "Bold Femme Fatale",
+    nav:    { bg: "#0D0D0D", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#0D0D0D" },
+    card:   { bg: "#F5DEDE", border: "rgba(13,13,13,0.07)" },
+    accent: "#8B0000",
+    swatches: [
+      { color:"#0D0D0D", hex:"#0D0D0D", lbl:"Noir"   },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"   },
+      { color:"#F5DEDE", hex:"#F5DEDE", lbl:"Card"   },
+      { color:"#8B0000", hex:"#8B0000", lbl:"Scarlet"},
+      { color:"#C9A84C", hex:"#C9A84C", lbl:"Gold"   },
+    ]
+  },
+  {
+    name: "Noir Cyber",
+    tone: "AI Royalty (Dark)",
+    nav:    { bg: "#080B12", text: "#E8E4DE" },
+    body:   { bg: "#080B12", text: "#E8E4DE" },
+    card:   { bg: "#10151F", border: "rgba(138,90,200,0.3)" },
+    accent: "#8A5AC8",
+    accentB:"#D4AF37",
+    swatches: [
+      { color:"#080B12", hex:"#080B12", lbl:"Base"   },
+      { color:"#10151F", hex:"#10151F", lbl:"Card"   },
+      { color:"#8A5AC8", hex:"#8A5AC8", lbl:"Violet" },
+      { color:"#D4AF37", hex:"#D4AF37", lbl:"Gold"   },
+      { color:"#E8E4DE", hex:"#E8E4DE", lbl:"Text"   },
+    ]
+  },
+
+  /* ── SCARLET NOIR family ── */
+  {
+    name: "Garnet & Lace",
+    tone: "Romantic Power",
+    nav:    { bg: "#3D0C1A", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#2A0814" },
+    card:   { bg: "#F8E5EC", border: "rgba(61,12,26,0.09)" },
+    accent: "#C0707A",
+    swatches: [
+      { color:"#3D0C1A", hex:"#3D0C1A", lbl:"Garnet"   },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"     },
+      { color:"#F8E5EC", hex:"#F8E5EC", lbl:"Lace"     },
+      { color:"#C0707A", hex:"#C0707A", lbl:"Rose Gold"},
+      { color:"#C9A84C", hex:"#C9A84C", lbl:"Gold"     },
+    ]
+  },
+  {
+    name: "Bordeaux Ivory",
+    tone: "Wine Country Elite",
+    nav:    { bg: "#2A0A18", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#2A0A18" },
+    card:   { bg: "#F5DDD8", border: "rgba(42,10,24,0.09)" },
+    accent: "#9B2335",
+    accentB:"#C9A84C",
+    swatches: [
+      { color:"#2A0A18", hex:"#2A0A18", lbl:"Bordeaux"},
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"    },
+      { color:"#F5DDD8", hex:"#F5DDD8", lbl:"Blush"  },
+      { color:"#9B2335", hex:"#9B2335", lbl:"Wine"   },
+      { color:"#C9A84C", hex:"#C9A84C", lbl:"Gold"   },
+    ]
+  },
+  {
+    name: "Port & Pearl",
+    tone: "Deep Feminine Luxury",
+    nav:    { bg: "#2A0D1A", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#1A0810" },
+    card:   { bg: "#F0E0EC", border: "rgba(42,13,26,0.08)" },
+    accent: "#8B1A3A",
+    accentB:"#D4AF37",
+    swatches: [
+      { color:"#2A0D1A", hex:"#2A0D1A", lbl:"Port"  },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"  },
+      { color:"#F0E0EC", hex:"#F0E0EC", lbl:"Petal" },
+      { color:"#8B1A3A", hex:"#8B1A3A", lbl:"Ruby"  },
+      { color:"#D4AF37", hex:"#D4AF37", lbl:"Gold"  },
+    ]
+  },
+  {
+    name: "Midnight Blush",
+    tone: "Dark Drama",
+    nav:    { bg: "#080810", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#0A0814" },
+    card:   { bg: "#F5E0E8", border: "rgba(8,8,16,0.07)" },
+    accent: "#9A3060",
+    accentB:"#C9A84C",
+    swatches: [
+      { color:"#080810", hex:"#080810", lbl:"Midnight"},
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"   },
+      { color:"#F5E0E8", hex:"#F5E0E8", lbl:"Petal"  },
+      { color:"#9A3060", hex:"#9A3060", lbl:"Magenta"},
+      { color:"#C9A84C", hex:"#C9A84C", lbl:"Gold"   },
+    ]
+  },
+
+  /* ── CHAMPAGNE SLATE family ── */
+  {
+    name: "Noir & Champagne",
+    tone: "Jet Black Elegance",
+    nav:    { bg: "#0A0A0A", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#1A1A14" },
+    card:   { bg: "#F0E8D4", border: "rgba(10,10,10,0.09)" },
+    accent: "#D4A840",
+    swatches: [
+      { color:"#0A0A0A", hex:"#0A0A0A", lbl:"Jet"  },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"  },
+      { color:"#F0E8D4", hex:"#F0E8D4", lbl:"Linen" },
+      { color:"#D4A840", hex:"#D4A840", lbl:"Gold"  },
+      { color:"#7A7060", hex:"#7A7060", lbl:"Warm"  },
+    ]
+  },
+  {
+    name: "Carbon & Sand",
+    tone: "Understated Mogul",
+    nav:    { bg: "#1A1A18", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#1A1A14" },
+    card:   { bg: "#EEE5D5", border: "rgba(26,26,24,0.09)" },
+    accent: "#C4A060",
+    swatches: [
+      { color:"#1A1A18", hex:"#1A1A18", lbl:"Carbon"},
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"  },
+      { color:"#EEE5D5", hex:"#EEE5D5", lbl:"Sand"  },
+      { color:"#C4A060", hex:"#C4A060", lbl:"Gold"  },
+      { color:"#8A8070", hex:"#8A8070", lbl:"Stone" },
+    ]
+  },
+  {
+    name: "Slate & Rose",
+    tone: "Executive Warmth",
+    nav:    { bg: "#2A2530", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#1A1520" },
+    card:   { bg: "#F0E0E8", border: "rgba(42,37,48,0.08)" },
+    accent: "#C08090",
+    accentB:"#D4A840",
+    swatches: [
+      { color:"#2A2530", hex:"#2A2530", lbl:"Slate"     },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"      },
+      { color:"#F0E0E8", hex:"#F0E0E8", lbl:"Blush"     },
+      { color:"#C08090", hex:"#C08090", lbl:"Dusty Rose"},
+      { color:"#D4A840", hex:"#D4A840", lbl:"Gold"      },
+    ]
+  },
+  {
+    name: "Graphite & Blush",
+    tone: "Power Softened",
+    nav:    { bg: "#232328", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#1A1820" },
+    card:   { bg: "#F5E8EC", border: "rgba(35,35,40,0.08)" },
+    accent: "#D4688A",
+    accentB:"#C9A84C",
+    swatches: [
+      { color:"#232328", hex:"#232328", lbl:"Graphite"},
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"   },
+      { color:"#F5E8EC", hex:"#F5E8EC", lbl:"Petal"  },
+      { color:"#D4688A", hex:"#D4688A", lbl:"Pink"   },
+      { color:"#C9A84C", hex:"#C9A84C", lbl:"Gold"   },
+    ]
+  },
+
+  /* ── CRIMSON CITADEL family ── */
+  {
+    name: "Onyx & Parchment",
+    tone: "Old Money Authority",
+    nav:    { bg: "#111008", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#1A1810" },
+    card:   { bg: "#EEE5CC", border: "rgba(17,16,8,0.09)" },
+    accent: "#C4962A",
+    swatches: [
+      { color:"#111008", hex:"#111008", lbl:"Onyx"   },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"   },
+      { color:"#EEE5CC", hex:"#EEE5CC", lbl:"Aged"   },
+      { color:"#C4962A", hex:"#C4962A", lbl:"Antique"},
+      { color:"#7A6840", hex:"#7A6840", lbl:"Warm"   },
+    ]
+  },
+  {
+    name: "Deep Plum & Cream",
+    tone: "Jewel Toned Warmth",
+    nav:    { bg: "#2A1028", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#1E0C1E" },
+    card:   { bg: "#F0E5F5", border: "rgba(42,16,40,0.09)" },
+    accent: "#D4AF37",
+    accentB:"#9B5AB8",
+    swatches: [
+      { color:"#2A1028", hex:"#2A1028", lbl:"Plum"    },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"    },
+      { color:"#F0E5F5", hex:"#F0E5F5", lbl:"Lavender"},
+      { color:"#D4AF37", hex:"#D4AF37", lbl:"Gold"    },
+      { color:"#9B5AB8", hex:"#9B5AB8", lbl:"Grape"   },
+    ]
+  },
+  {
+    name: "Mahogany & Pearl",
+    tone: "Classic Prestige",
+    nav:    { bg: "#2A1008", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#1A0C08" },
+    card:   { bg: "#EEE8E0", border: "rgba(42,16,8,0.09)" },
+    accent: "#C4962A",
+    accentB:"#8B3A1A",
+    swatches: [
+      { color:"#2A1008", hex:"#2A1008", lbl:"Mahogany"},
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"   },
+      { color:"#EEE8E0", hex:"#EEE8E0", lbl:"Cream"  },
+      { color:"#C4962A", hex:"#C4962A", lbl:"Gold"   },
+      { color:"#8B3A1A", hex:"#8B3A1A", lbl:"Rust"   },
+    ]
+  },
+  {
+    name: "Ebony & Blush",
+    tone: "Noir Femininity",
+    nav:    { bg: "#1A1014", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#120A10" },
+    card:   { bg: "#F5E0E8", border: "rgba(26,16,20,0.09)" },
+    accent: "#B87090",
+    accentB:"#D4AF37",
+    swatches: [
+      { color:"#1A1014", hex:"#1A1014", lbl:"Ebony" },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"  },
+      { color:"#F5E0E8", hex:"#F5E0E8", lbl:"Petal" },
+      { color:"#B87090", hex:"#B87090", lbl:"Mauve" },
+      { color:"#D4AF37", hex:"#D4AF37", lbl:"Gold"  },
+    ]
+  },
+
+  /* ── BLUE FAMILY ── */
+  {
+    name: "Sapphire Noir",
+    tone: "Dark Blue Royalty",
+    nav:    { bg: "#08101E", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#08101E" },
+    card:   { bg: "#D8E4F8", border: "rgba(8,16,30,0.09)" },
+    accent: "#1A5CCC",
+    accentB:"#D4AF37",
+    swatches: [
+      { color:"#08101E", hex:"#08101E", lbl:"Midnight" },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"    },
+      { color:"#D8E4F8", hex:"#D8E4F8", lbl:"Card"    },
+      { color:"#1A5CCC", hex:"#1A5CCC", lbl:"Sapphire"},
+      { color:"#D4AF37", hex:"#D4AF37", lbl:"Gold"    },
+    ]
+  },
+  {
+    name: "Navy & White",
+    tone: "Classic Authority",
+    nav:    { bg: "#0A1628", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#0A1628" },
+    card:   { bg: "#E8EAF0", border: "rgba(10,22,40,0.09)" },
+    accent: "#C9A84C",
+    accentB:"#2A4A8A",
+    swatches: [
+      { color:"#0A1628", hex:"#0A1628", lbl:"Navy"  },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"  },
+      { color:"#E8EAF0", hex:"#E8EAF0", lbl:"Card"  },
+      { color:"#C9A84C", hex:"#C9A84C", lbl:"Gold"  },
+      { color:"#2A4A8A", hex:"#2A4A8A", lbl:"Blue"  },
+    ]
+  },
+  {
+    name: "Cobalt & Blush",
+    tone: "Bold & Feminine",
+    nav:    { bg: "#0D1F4A", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#0A1432" },
+    card:   { bg: "#E8E0F0", border: "rgba(13,31,74,0.09)" },
+    accent: "#2855B8",
+    accentB:"#C9A84C",
+    swatches: [
+      { color:"#0D1F4A", hex:"#0D1F4A", lbl:"Cobalt"  },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"    },
+      { color:"#E8E0F0", hex:"#E8E0F0", lbl:"Lavender"},
+      { color:"#2855B8", hex:"#2855B8", lbl:"Blue"    },
+      { color:"#C9A84C", hex:"#C9A84C", lbl:"Gold"    },
+    ]
+  },
+  {
+    name: "Electric Noir",
+    tone: "Cybersec Power",
+    nav:    { bg: "#060A10", text: "#E8F4FF" },
+    body:   { bg: "#060A10", text: "#E8F4FF" },
+    card:   { bg: "#0E1620", border: "rgba(64,160,255,0.22)" },
+    accent: "#40A0FF",
+    accentB:"#C9A84C",
+    swatches: [
+      { color:"#060A10", hex:"#060A10", lbl:"Void"    },
+      { color:"#0E1620", hex:"#0E1620", lbl:"Card"    },
+      { color:"#40A0FF", hex:"#40A0FF", lbl:"Electric"},
+      { color:"#C9A84C", hex:"#C9A84C", lbl:"Gold"    },
+      { color:"#E8F4FF", hex:"#E8F4FF", lbl:"Text"    },
+    ]
+  },
+  {
+    name: "Slate Blue & Gold",
+    tone: "Executive Tech",
+    nav:    { bg: "#1A2540", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#1A2540" },
+    card:   { bg: "#E0E5F0", border: "rgba(26,37,64,0.09)" },
+    accent: "#D4AF37",
+    accentB:"#3A5598",
+    swatches: [
+      { color:"#1A2540", hex:"#1A2540", lbl:"Steel Blue"},
+      { color:"#ffffff", hex:"#ffffff", lbl:"White"    },
+      { color:"#E0E5F0", hex:"#E0E5F0", lbl:"Card"     },
+      { color:"#D4AF37", hex:"#D4AF37", lbl:"Gold"     },
+      { color:"#3A5598", hex:"#3A5598", lbl:"Blue"     },
+    ]
+  },
+  {
+    name: "Indigo Prestige",
+    tone: "Deep Indigo Luxury",
+    nav:    { bg: "#12103A", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#12103A" },
+    card:   { bg: "#DDD8F5", border: "rgba(18,16,58,0.09)" },
+    accent: "#D4AF37",
+    accentB:"#5548C8",
+    swatches: [
+      { color:"#12103A", hex:"#12103A", lbl:"Indigo" },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"   },
+      { color:"#DDD8F5", hex:"#DDD8F5", lbl:"Violet" },
+      { color:"#5548C8", hex:"#5548C8", lbl:"Indigo" },
+      { color:"#D4AF37", hex:"#D4AF37", lbl:"Gold"   },
+    ]
+  },
+
+  /* ── BLUE + GOLD + RED ── */
+  {
+    name: "Tricolor Luxe",
+    tone: "Power Trifecta",
+    nav:    { bg: "#0A1530", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#0A1530" },
+    card:   { bg: "#EAE8F0", border: "rgba(10,21,48,0.09)" },
+    accent: "#D4AF37",
+    accentB:"#CC2200",
+    swatches: [
+      { color:"#0A1530", hex:"#0A1530", lbl:"Navy"   },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"   },
+      { color:"#D4AF37", hex:"#D4AF37", lbl:"Gold"   },
+      { color:"#CC2200", hex:"#CC2200", lbl:"Scarlet"},
+      { color:"#EAE8F0", hex:"#EAE8F0", lbl:"Card"   },
+    ]
+  },
+  {
+    name: "Cobalt & Crimson",
+    tone: "Bold Authority",
+    nav:    { bg: "#0D1B4A", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#0D1B4A" },
+    card:   { bg: "#E8EAF5", border: "rgba(13,27,74,0.09)" },
+    accent: "#C41E1E",
+    accentB:"#D4AF37",
+    swatches: [
+      { color:"#0D1B4A", hex:"#0D1B4A", lbl:"Cobalt" },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"   },
+      { color:"#E8EAF5", hex:"#E8EAF5", lbl:"Card"   },
+      { color:"#C41E1E", hex:"#C41E1E", lbl:"Crimson"},
+      { color:"#D4AF37", hex:"#D4AF37", lbl:"Gold"   },
+    ]
+  },
+  {
+    name: "Sapphire & Rouge",
+    tone: "Deep Jewel Power",
+    nav:    { bg: "#0A1628", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#0A1628" },
+    card:   { bg: "#F0E0E0", border: "rgba(10,22,40,0.08)" },
+    accent: "#9B0020",
+    accentB:"#C9A84C",
+    swatches: [
+      { color:"#0A1628", hex:"#0A1628", lbl:"Sapphire"},
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"   },
+      { color:"#F0E0E0", hex:"#F0E0E0", lbl:"Blush"  },
+      { color:"#9B0020", hex:"#9B0020", lbl:"Ruby"   },
+      { color:"#C9A84C", hex:"#C9A84C", lbl:"Gold"   },
+    ]
+  },
+  {
+    name: "Navy & Scarlet",
+    tone: "Commanding Presence",
+    nav:    { bg: "#08101E", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#08101E" },
+    card:   { bg: "#F5E8E8", border: "rgba(8,16,30,0.08)" },
+    accent: "#8B0000",
+    accentB:"#D4AF37",
+    swatches: [
+      { color:"#08101E", hex:"#08101E", lbl:"Midnight"},
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"   },
+      { color:"#F5E8E8", hex:"#F5E8E8", lbl:"Card"   },
+      { color:"#8B0000", hex:"#8B0000", lbl:"Scarlet" },
+      { color:"#D4AF37", hex:"#D4AF37", lbl:"Gold"   },
+    ]
+  },
+  {
+    name: "Midnight Flag",
+    tone: "Dark Cybersec Royale",
+    nav:    { bg: "#060A12", text: "#E8F0FF" },
+    body:   { bg: "#060A12", text: "#E8F0FF" },
+    card:   { bg: "#0E1525", border: "rgba(26,92,204,0.28)" },
+    accent: "#1A5CCC",
+    accentB:"#CC2200",
+    swatches: [
+      { color:"#060A12", hex:"#060A12", lbl:"Void"   },
+      { color:"#0E1525", hex:"#0E1525", lbl:"Card"   },
+      { color:"#1A5CCC", hex:"#1A5CCC", lbl:"Blue"   },
+      { color:"#CC2200", hex:"#CC2200", lbl:"Red"    },
+      { color:"#D4AF37", hex:"#D4AF37", lbl:"Gold"   },
+    ]
+  },
+  {
+    name: "Azure Empire",
+    tone: "Regal Tricolor",
+    nav:    { bg: "#1A2A5E", text: "#ffffff" },
+    body:   { bg: "#ffffff", text: "#1A2A5E" },
+    card:   { bg: "#F0E8E8", border: "rgba(26,42,94,0.08)" },
+    accent: "#B8000A",
+    accentB:"#C9A84C",
+    swatches: [
+      { color:"#1A2A5E", hex:"#1A2A5E", lbl:"Azure"  },
+      { color:"#ffffff", hex:"#ffffff", lbl:"Body"   },
+      { color:"#F0E8E8", hex:"#F0E8E8", lbl:"Card"   },
+      { color:"#B8000A", hex:"#B8000A", lbl:"Crimson"},
+      { color:"#C9A84C", hex:"#C9A84C", lbl:"Gold"   },
+    ]
+  },
+];
+
+function isDark(hex) {
+  const r = parseInt(hex.slice(1,3),16);
+  const g = parseInt(hex.slice(3,5),16);
+  const b = parseInt(hex.slice(5,7),16);
+  return (0.299*r + 0.587*g + 0.114*b) < 128;
+}
+
+function renderPalette(p) {
+  const isBodyDark = isDark(p.body.bg);
+
+  const navHtml = `
+    <div class="p-nav" style="background:${p.nav.bg}; color:${p.nav.text};">
+      <span class="p-nav-brand">Deandra L. Rodricks</span>
+      <span class="p-nav-links">
+        <span>About</span><span>Projects</span><span>Contact</span>
+      </span>
+    </div>`;
+
+  const accentColor = p.accentB ?? p.accent;
+  const tagColor = p.accent;
+
+  const heroHtml = `
+    <div class="p-hero" style="background:${p.body.bg}; color:${p.body.text};">
+      <div class="p-hero-name">Deandra Lauren Rodricks</div>
+      <div class="p-hero-title" style="color:${tagColor};">AI &amp; Cybersecurity Strategist</div>
+      <div class="p-hero-rule" style="background:${p.accent};"></div>
+      <div class="p-hero-bio">Bridging enterprise security and intelligent systems — with the precision, elegance, and authority luxury demands.</div>
+    </div>`;
+
+  const cardsHtml = `
+    <div class="p-cards" style="background:${p.body.bg};">
+      <div class="p-card" style="background:${p.card.bg}; border:1px solid ${p.card.border}; color:${p.body.text};">
+        <div class="p-card-tag" style="color:${tagColor};">Featured</div>
+        <div class="p-card-title">AI Risk Framework</div>
+        <div class="p-card-body">Enterprise threat modeling for generative AI.</div>
+      </div>
+      <div class="p-card" style="background:${p.card.bg}; border:1px solid ${p.card.border}; color:${p.body.text};">
+        <div class="p-card-tag" style="color:${tagColor};">Management</div>
+        <div class="p-card-title">Team Leadership</div>
+        <div class="p-card-body">High-performance cross-functional teams.</div>
+      </div>
+    </div>`;
+
+  const swatchDots = p.swatches.map(s => `
+    <div class="swatch">
+      <div class="swatch-dot" style="background:${s.color};"></div>
+      <div class="swatch-hex">${s.hex}</div>
+      <div class="swatch-lbl">${s.lbl}</div>
+    </div>`).join('');
+
+  const swatchesBg = isBodyDark ? p.card.bg : p.nav.bg;
+  const swatchesHtml = `
+    <div class="p-swatches" style="background:${swatchesBg};">${swatchDots}</div>`;
+
+  const btnColor = p.accent;
+  const btnBorder = isBodyDark
+    ? `border:1px solid ${p.accent}; color:${p.accent}; background:${p.body.bg};`
+    : `border:1px solid ${p.accent}; color:${p.accent}; background:${p.body.bg};`;
+  const btnHtml = `<button class="pick-btn" style="${btnBorder}" onclick="alert('You selected: ${p.name}')">Select This Palette</button>`;
+
+  return `
+    <div class="palette">
+      <div class="p-header">
+        <h2>${p.name}</h2>
+        <span class="tone">${p.tone}</span>
+      </div>
+      ${navHtml}
+      ${heroHtml}
+      ${cardsHtml}
+      ${swatchesHtml}
+      ${btnHtml}
+    </div>`;
+}
+
+document.getElementById('grid').innerHTML = PALETTES.map(renderPalette).join('');
+</script>
+</body>
+</html>

@@ -8,48 +8,6 @@
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
-  // Scroll lock state
-  var lockScrollY = null;
-  var lockDeltaAccum = 0;
-  var lockSetAt = 0;
-  var lockResetTimer = null;
-  // Ignore wheel events for this many ms after the lock fires —
-  // prevents the tail of the triggering swipe from immediately releasing it.
-  var LOCK_INIT_IGNORE_MS = 400;
-  // Wheel delta (px) needed from a new gesture to release the lock.
-  var LOCK_RELEASE_DELTA = 80;
-
-  window.addEventListener("wheel", function (e) {
-    if (lockScrollY === null) return;
-
-    // Swallow the rest of the triggering gesture
-    if (performance.now() - lockSetAt < LOCK_INIT_IGNORE_MS) {
-      e.preventDefault();
-      return;
-    }
-
-    // After the ignore window, debounce resets accum between gestures
-    clearTimeout(lockResetTimer);
-    lockResetTimer = setTimeout(function () {
-      lockDeltaAccum = 0;
-    }, 150);
-
-    if (e.deltaY > 0) {
-      lockDeltaAccum += e.deltaY;
-      if (lockDeltaAccum >= LOCK_RELEASE_DELTA) {
-        lockScrollY = null;
-        lockDeltaAccum = 0;
-        // Don't preventDefault — let this scroll event through
-      } else {
-        e.preventDefault();
-      }
-    } else if (e.deltaY < 0) {
-      // Scrolling back up: release lock immediately
-      lockScrollY = null;
-      lockDeltaAccum = 0;
-    }
-  }, { passive: false });
-
   function clamp(value, min, max) {
     return Math.min(max, Math.max(min, value));
   }
@@ -92,11 +50,14 @@
 
     if (scrollable <= 0) {
       stage.style.setProperty("--scroll-progress", "1");
+      if (scene) {
+        scene.classList.add("about-hero-scene--composed");
+        measurePanelHeight();
+      }
       return;
     }
 
-    var progress = -rect.top / scrollable;
-    progress = clamp(progress, 0, 1);
+    var progress = clamp(-rect.top / scrollable, 0, 1);
     stage.style.setProperty("--scroll-progress", String(progress));
 
     var figure = stage.querySelector(".about-hero-figure");
@@ -107,26 +68,27 @@
     if (scene) {
       var wasComposed = scene.classList.contains("about-hero-scene--composed");
       var isComposed = progress >= 0.88;
-
-      if (isComposed && !wasComposed) {
-        // Snap to exactly the 0.88 threshold and lock the page there
-        var stageDocTop = rect.top + window.scrollY;
-        lockScrollY = Math.round(stageDocTop + 0.88 * scrollable);
-        lockDeltaAccum = 0;
-        lockSetAt = performance.now();
-        window.scrollTo(0, lockScrollY);
-        measurePanelHeight();
-      }
-
+      if (isComposed && !wasComposed) measurePanelHeight();
       scene.classList.toggle("about-hero-scene--composed", isComposed);
       scene.classList.toggle("about-hero-scene--mobile-settled", progress >= 0.85);
     }
   }
 
-  window.addEventListener("scroll", updateScrollProgress, { passive: true });
+  // Poll scrollY on every animation frame so the animation works even
+  // on Linux Chrome builds where scroll events on window don't fire reliably.
+  var prevScrollY = -1;
+  function rafLoop() {
+    var sy = window.scrollY;
+    if (sy !== prevScrollY) {
+      prevScrollY = sy;
+      updateScrollProgress();
+    }
+    requestAnimationFrame(rafLoop);
+  }
+  requestAnimationFrame(rafLoop);
+
   window.addEventListener("resize", function () {
-    lockScrollY = null;
-    lockDeltaAccum = 0;
+    prevScrollY = -1;
     if (panel) panel.style.removeProperty("--panel-height");
     updateScrollProgress();
   });

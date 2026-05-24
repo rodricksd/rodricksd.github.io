@@ -11,15 +11,15 @@ https://templatemo.com/tm-531-reflux
 
 /* Theme variables */
 :root {
-    --nav-bg:         #1B263B;
+    --nav-bg:         #0A1530;
     --nav-text:       #ffffff;
     --bg:             #ffffff;
-    --text:           #1B263B;
-    --card-bg:        rgba(226, 213, 200, 0.35);
-    --card-border:    rgba(27, 38, 59, 0.12);
-    --meta-color:     rgba(27, 38, 59, 0.65);
-    --service-bg:     rgba(226, 213, 200, 0.4);
-    --section-border: rgba(27, 38, 59, 0.15);
+    --text:           #0A1530;
+    --card-bg:        rgba(234, 232, 240, 0.45);
+    --card-border:    rgba(10, 21, 48, 0.09);
+    --meta-color:     rgba(10, 21, 48, 0.60);
+    --service-bg:     rgba(234, 232, 240, 0.38);
+    --section-border: rgba(10, 21, 48, 0.14);
 }
 
 body {
@@ -36,7 +36,6 @@ body {
 /* Basic */
 
 body {
-    overflow-x: hidden;
     background: var(--bg);
     color: var(--text);
     transition: background 0.3s, color 0.3s;
