@@ -750,6 +750,11 @@
 /* ── Mobile ── */
 @media (max-width: 768px) {
 
+  .dlr-logo-nav {
+    display: none;
+  }
+
+
   /* ===== ABOUT HERO: fully disable animation, stack everything ===== */
   .about-scroll-stage {
     height: auto !important;
