@@ -56,7 +56,6 @@
   z-index: 2;
   margin: 0;
   transition: none;
-  will-change: transform, left;
 }
 
 .about-hero-image {
