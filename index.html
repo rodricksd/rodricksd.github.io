@@ -42,6 +42,7 @@
         <li><a href="#section4">Projects</a></li>
         <li><a href="#section5">Awards</a></li>
         <li><a href="#section6">Contact</a></li>
+        <li><a href="articles/index.html">Writing</a></li>
       </ul>
       <a class="landing-scroll-cue" href="#section1" aria-label="Scroll to portfolio">
         <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
@@ -641,8 +642,11 @@
       };
 
       $("#nav").on("click", "a", function(e) {
-        e.preventDefault();
-        showSection($(this).attr("href"), true);
+        var href = $(this).attr("href");
+        if (href && href.startsWith("#")) {
+          e.preventDefault();
+          showSection(href, true);
+        }
       });
 
       $(".landing-scroll-cue").on("click", function(e) {
