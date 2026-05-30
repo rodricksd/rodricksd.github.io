@@ -756,6 +756,20 @@ section.contact-me {
         display: none;
     }
 
+    .nav-brand {
+        max-width: calc(100% - 80px);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .nav-subtitle {
+        max-width: calc(100% - 40px);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     #mobile-nav-toggle {
         display: none;
     }
