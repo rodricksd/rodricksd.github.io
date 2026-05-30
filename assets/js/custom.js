@@ -15,7 +15,8 @@
     var logoOpacity = Math.max(0, 1 - (progress / 0.62));
     var logoTop = window.innerHeight / 2;
     var vignetteOpacity = Math.max(0, 1 - (progress / 0.62));
-    var startBrand = Math.min(Math.max(window.innerWidth * 0.042, 32), 60);
+    var minBrand = window.innerWidth <= 390 ? 20 : window.innerWidth <= 480 ? 24 : 32;
+    var startBrand = Math.min(Math.max(window.innerWidth * 0.042, minBrand), 60);
     var endBrand = window.innerWidth <= 768 ? 17 : 22;
     var brandSize = startBrand - ((startBrand - endBrand) * progress);
     var brandMargin = 8 - (6 * progress);
