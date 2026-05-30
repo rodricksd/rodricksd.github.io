@@ -728,36 +728,45 @@ section.contact-me {
 
 @media screen and (max-width: 768px) {
     #nav-wrap {
-        height: 100vh;
-        height: 100svh;
+        /* Use the JS-animated variable so the transition runs smoothly on mobile */
+        height: var(--landing-height);
     }
 
     #nav-wrap.nav-compact {
-        height: 56px;
+        height: 64px;
+        /* Allow the dropdown to extend below the compact bar */
+        overflow: visible;
     }
 
     .nav-top {
         padding: 0 20px;
-        min-height: 56px;
+        min-height: 64px;
     }
 
     .nav-brand {
-        font-size: var(--landing-brand-size);
+        font-size: min(var(--landing-brand-size), 18px);
         margin-bottom: 0;
+        text-align: center;
     }
 
     .nav-subtitle {
         display: block;
-        font-size: var(--landing-subtitle-size);
+        font-size: min(var(--landing-subtitle-size), 14px);
         text-align: center;
     }
 
+    #nav-wrap.nav-compact .nav-brand {
+        bottom: 28px;
+        max-width: calc(100% - 92px);
+    }
+
     #nav-wrap.nav-compact .nav-subtitle {
-        display: none;
+        bottom: 8px;
+        max-width: calc(100% - 92px);
     }
 
     .nav-brand {
-        max-width: calc(100% - 80px);
+        max-width: calc(100% - 40px);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -786,6 +795,15 @@ section.contact-me {
 
     #nav-wrap.nav-compact #nav.open {
         display: flex;
+        /* Drop below the compact bar instead of clipping inside it */
+        position: fixed;
+        top: 64px;
+        bottom: auto;
+        left: 0;
+        right: 0;
+        background: var(--nav-bg);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        z-index: 9998;
     }
 
     #nav li {
@@ -814,7 +832,7 @@ section.contact-me {
     }
 
     #page-wraper {
-        padding-top: 56px;
+        padding-top: 64px;
     }
 
     .section {
