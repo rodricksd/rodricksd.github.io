@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Two frameworks from NIST, two different jobs. Here's what the AI RMF adds that the CSF doesn't cover — and how to use them together." />
+    <meta name="author" content="Deandra Lauren Rodricks" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet" />
+    <title>NIST CSF vs. NIST AI RMF | Deandra Lauren Rodricks</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/fontawesome.css" />
+    <link rel="stylesheet" href="../assets/css/templatemo-style.css" />
+    <link rel="stylesheet" href="../assets/css/articles.css" />
+  </head>
+  <body>
+
+    <!-- Fixed home button -->
+    <a href="../index.html" class="home-btn" aria-label="Back to Portfolio">
+      <img src="../assets/images/DLR_Logo.png" alt="DLR" />
+      <span class="home-btn-tooltip">Back to Portfolio</span>
+    </a>
+
+    <!-- Sticky top bar -->
+    <div class="article-topbar">
+      <a href="index.html" class="topbar-back"><i class="fa fa-arrow-left"></i> All Articles</a>
+      <span class="topbar-sep">|</span>
+      <span class="topbar-series-badge">Governing AI · 2 of 3</span>
+      <a href="#" class="topbar-linkedin" target="_blank" rel="noopener noreferrer">
+        <i class="fa fa-linkedin-square"></i> Read on LinkedIn
+      </a>
+    </div>
+
+    <!-- Article -->
+    <div class="article-wrapper">
+      <span class="article-series-label">Governing AI — Article 2 of 3</span>
+      <h1 class="article-title">NIST CSF vs. NIST AI RMF: What the Difference Means for Your Compliance Program</h1>
+      <div class="article-meta-row">
+        <span class="meta-item">May 15, 2026</span>
+        <span class="meta-dot"></span>
+        <span class="meta-item">7 min read</span>
+        <span class="meta-dot"></span>
+        <span class="meta-item">GRC &amp; AI Strategy</span>
+      </div>
+
+      <div class="article-body">
+
+        <p>Compliance teams are increasingly facing a version of the same question: we already follow the NIST Cybersecurity Framework — do we need to do the AI RMF on top of it? The short answer is yes, but the more useful answer explains why the two frameworks are doing fundamentally different jobs, and what layering them correctly actually looks like in practice.</p>
+
+        <p>This confusion is understandable. Both frameworks come from NIST. Both use a similar vocabulary of functions and categories. Both are voluntary and risk-based. But framing them as alternatives — or assuming one subsumes the other — leads organizations to build AI governance programs with critical gaps they don't realize are there until something goes wrong.</p>
+
+        <div class="callout">
+          <p>The CSF asks: is our information secure? The AI RMF asks: is our AI trustworthy? These are related questions, but they are not the same question.</p>
+        </div>
+
+        <h2>What the NIST CSF Does (and Was Built to Do)</h2>
+
+        <p>The Cybersecurity Framework — now in its 2.0 version — is a risk management framework designed to help organizations manage cybersecurity risk. Its core functions (Govern, Identify, Protect, Detect, Respond, Recover) map to a threat-and-vulnerability model: there are assets to protect, adversaries who want to compromise them, and controls to reduce that likelihood and impact.</p>
+
+        <p>The CSF is exceptionally well-designed for this purpose. It's also genuinely useful for organizations managing AI systems from a security standpoint — model endpoints need to be secured, training data pipelines have integrity requirements, and AI infrastructure is subject to all the same threat actors as any other enterprise system.</p>
+
+        <p>But the CSF was not designed to address what makes AI risk categorically different from traditional IT risk. It doesn't have a construct for algorithmic bias. It doesn't address model explainability. It has no framework for evaluating whether an AI system's outputs are reliable in ways that matter — not just secure, but <em>trustworthy</em>.</p>
+
+        <h2>What the NIST AI RMF Adds</h2>
+
+        <p>The AI Risk Management Framework, released in 2023, was purpose-built for the characteristics of AI that existing frameworks don't adequately cover. It organizes around four core functions: <strong>Govern, Map, Measure, and Manage</strong>. But more important than the structure is the vocabulary it introduces.</p>
+
+        <p>The AI RMF centers on seven properties of trustworthy AI:</p>
+
+        <ul>
+          <li><strong>Accountable and transparent</strong> — can you explain decisions and trace responsibility?</li>
+          <li><strong>Explainable and interpretable</strong> — can a human understand why the model produced a given output?</li>
+          <li><strong>Fair, with managed bias</strong> — does the system perform equitably across affected populations?</li>
+          <li><strong>Privacy-enhanced</strong> — does AI use align with data governance commitments?</li>
+          <li><strong>Reliable and safe</strong> — does the system behave as intended across expected conditions?</li>
+          <li><strong>Secure and resilient</strong> — is the AI system robust to adversarial manipulation?</li>
+          <li><strong>Valid and verified</strong> — has the model been tested against its intended purpose?</li>
+        </ul>
+
+        <p>Notice that only one of those seven properties — secure and resilient — is directly within the CSF's scope. The other six represent entirely new governance requirements that organizations need to build programs around.</p>
+
+        <h2>How to Layer Them in Practice</h2>
+
+        <p>The practical approach isn't to choose between frameworks — it's to understand which risks each one governs and build a combined program accordingly.</p>
+
+        <p>Start by using the CSF to establish your AI security posture: access controls, monitoring, incident response, and secure development practices for AI systems. This is table stakes, and if your CSF implementation is mature, you have a head start on the AI RMF's secure and resilient property.</p>
+
+        <p>Then use the AI RMF's GOVERN function to establish the organizational structures that the CSF doesn't require: an AI governance committee or steering function, a policy that defines acceptable AI use, an AI inventory with risk classification, and clear accountability assignments for AI systems across their lifecycle.</p>
+
+        <p>The MAP function is where the two frameworks most productively intersect. AI risk context-setting requires understanding both the security threat landscape (CSF) and the broader sociotechnical impacts of how the AI system behaves in the real world (AI RMF). Doing this well means bringing security, compliance, data science, legal, and business stakeholders into the same conversation.</p>
+
+        <p>Finally, the MEASURE and MANAGE functions are largely new territory. Organizations need to define metrics for trustworthiness properties, establish ongoing monitoring cadences, and build the feedback loops that allow governance to keep pace with how models evolve in production.</p>
+
+        <p>The organizations that get this right don't treat AI governance as a compliance exercise layered on top of existing programs. They treat it as a new capability — one that requires new skills, new organizational structures, and a different relationship between technical and non-technical stakeholders than most compliance programs currently have.</p>
+
+        <div class="key-takeaways">
+          <h3>Key Takeaways</h3>
+          <ul>
+            <li>The NIST CSF and AI RMF address related but distinct risk categories — security posture vs. AI trustworthiness</li>
+            <li>Only one of the AI RMF's seven trustworthy AI properties falls within the CSF's scope</li>
+            <li>Effective programs layer both: CSF for AI security infrastructure, AI RMF for the governance, accountability, and reliability properties CSF doesn't cover</li>
+            <li>The GOVERN function of the AI RMF is the most urgent starting point for organizations without formal AI governance structures</li>
+            <li>AI governance requires cross-functional collaboration that most compliance programs aren't structured to support — building that capability is the first real deliverable</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="article-nav-section">
+      <div class="nav-divider"></div>
+
+      <div class="nav-block">
+        <div class="nav-block-label">Series — Governing AI</div>
+        <div class="nav-prev-next">
+          <a href="grc-ai-01.html" class="nav-link-card">
+            <span class="nav-direction">← Previous in series</span>
+            <span class="nav-title">Why Every Organization Needs an AI Risk Framework</span>
+          </a>
+          <a href="grc-ai-03.html" class="nav-link-card is-next">
+            <span class="nav-direction">Next in series →</span>
+            <span class="nav-title">Five Mistakes Organizations Make When Building an AI Governance Program</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-block">
+        <div class="nav-block-label">Chronological</div>
+        <div class="nav-prev-next">
+          <a href="grc-ai-01.html" class="nav-link-card">
+            <span class="nav-direction">← Previous article</span>
+            <span class="nav-title">Why Every Organization Needs an AI Risk Framework</span>
+          </a>
+          <a href="grc-ai-03.html" class="nav-link-card is-next">
+            <span class="nav-direction">Next article →</span>
+            <span class="nav-title">Five Mistakes Organizations Make When Building an AI Governance Program</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../vendor/jquery/jquery.min.js"></script>
+  </body>
+</html>
