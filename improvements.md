@@ -43,9 +43,9 @@
 - [ ] These directly validate your specialty — they deserve visual prominence
 
 ### 7. Sharpen the About section framing
-- [ ] Lead with AI + cybersecurity specialization before pivoting to personal narrative
-- [ ] The Enneagram/Predictive Index section is charming but should be shortened — it currently competes with your professional identity
-- [ ] Tighten "What Drives Me" bullets to reinforce the specialist angle
+- [x] Lead with AI + cybersecurity specialization before pivoting to personal narrative
+- [x] The Enneagram/Predictive Index section is charming but should be shortened — it currently competes with your professional identity
+- [x] Tighten "What Drives Me" bullets to reinforce the specialist angle
 
 ---
 
