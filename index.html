@@ -341,6 +341,30 @@
             </div>
             <div class="col-md-4 project-col" data-category="cybersecurity">
               <div class="project-card">
+                <i class="fa fa-sitemap project-icon"></i>
+                <h4>AI Governance &amp; Risk Framework for SDLC</h4>
+                <p class="project-org">Purdue University · Northern Trust</p>
+                <span class="project-tag">Cybersecurity</span>
+                <span class="project-tag project-tag--active">In Progress</span>
+                <button class="project-details-btn" onclick="openModal('ai-rmf-modal')">View Research &#8594;</button>
+                <p>
+                  Building an enterprise-grade AI risk governance framework for an organization
+                  integrating AI-driven agents across their SDLC. Aligned with NIST AI RMF,
+                  the work produces a structured risk taxonomy, a controls-to-SDLC-phase
+                  mapping, and policy objectives for responsible AI adoption.
+                </p>
+                <div class="tech-stack">
+                  <span class="tech-pill">NIST AI RMF</span>
+                  <span class="tech-pill">GRC</span>
+                  <span class="tech-pill">MITRE ATLAS</span>
+                  <span class="tech-pill">OWASP LLM Top 10</span>
+                  <span class="tech-pill">AI Governance</span>
+                  <span class="tech-pill">SDLC</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 project-col" data-category="cybersecurity">
+              <div class="project-card">
                 <i class="fa fa-shield project-icon"></i>
                 <h4>Incident Response Tabletop Exercise</h4>
                 <p class="project-org">Non-Profit Organization</p>
@@ -667,6 +691,66 @@
           </div>
         </div>
       </section>
+    </div>
+
+    <!-- AI RMF Modal -->
+    <div id="ai-rmf-modal" class="project-modal-overlay" onclick="closeModalOnOverlay(event, 'ai-rmf-modal')">
+      <div class="project-modal-box">
+        <button class="project-modal-close" onclick="closeModal('ai-rmf-modal')">&times;</button>
+        <h3>AI Governance &amp; Risk Framework for SDLC</h3>
+        <p class="project-org" style="margin-bottom:6px;">Purdue University · Northern Trust</p>
+        <span class="modal-status-badge">In Progress</span>
+
+        <div class="modal-section">
+          <h4 class="modal-section-heading">Problem Statement</h4>
+          <p class="modal-body-text">As an organization implements its software development lifecycle using AI-driven agents, it faces new risk exposures and governance challenges. Both internally developed AI/LLM agents and third-party SaaS AI capabilities must be managed responsibly across all SDLC phases — design, development, testing, deployment, and operations. The goal is alignment with the NIST AI Risk Management Framework to provide a common risk taxonomy, structure stakeholder engagement, and guide mitigation efforts.</p>
+        </div>
+
+        <div class="modal-section">
+          <h4 class="modal-section-heading">Key Deliverables</h4>
+          <ul class="modal-list">
+            <li>A structured list of applicable AI risks — bias/fairness, privacy/security, reliability, accountability — mapped to NIST's trustworthiness principles across the SDLC</li>
+            <li>A controls and safeguards mapping to each risk category and each SDLC phase, including technical and process controls aligned with NIST AI RMF</li>
+            <li>High-level policy and standard objectives to institutionalize governance, acceptable use, accountability, and oversight requirements for responsible AI adoption</li>
+          </ul>
+        </div>
+
+        <div class="modal-section">
+          <h4 class="modal-section-heading">Preliminary Research Findings</h4>
+          <div class="modal-framework-grid">
+            <div class="modal-framework-item">
+              <span class="modal-framework-label">NIST AI RMF 1.0</span>
+              <p>The de facto US reference for trustworthy AI. Built around Govern, Map, Measure, and Manage functions. Explicitly integrates AI risk into existing ERM, IT governance, and SDLC processes. Supplemented by the 2024 Generative AI Profile (NIST-AI-600-1) and the 2026 Critical Infrastructure AI RMF Profile.</p>
+            </div>
+            <div class="modal-framework-item">
+              <span class="modal-framework-label">EU AI Act (2024/1689)</span>
+              <p>In force August 2024; most high-risk AI obligations enforceable August 2026. Compliance with prudential supervision does not automatically satisfy AI Act requirements — key gaps in human oversight, data governance, and cybersecurity.</p>
+            </div>
+            <div class="modal-framework-item">
+              <span class="modal-framework-label">MITRE ATLAS v5.1</span>
+              <p>Catalogs 16 tactics, 84 techniques, and 56 sub-techniques targeting AI and ML systems. ~70% of mitigations map to existing security controls. February 2026 update added agentic AI techniques. Informs threat modeling and detection in operations.</p>
+            </div>
+            <div class="modal-framework-item">
+              <span class="modal-framework-label">OWASP LLM Top 10</span>
+              <p>Targets developers and security engineers with top-10 technical vulnerabilities in AI/LLM applications, including dedicated guidelines for AI agents and generative AI. Guides secure coding in the development phase.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <h4 class="modal-section-heading">AI Agent Risk Surface</h4>
+          <p class="modal-body-text">AI agents introduce unique vulnerabilities — prompt injection, data leakage, model poisoning — that traditional security tools cannot address. The six highest-impact risk categories identified from a 2025 survey of 100+ security leaders:</p>
+          <ul class="modal-list">
+            <li>Supply chain risks (LLM plugins, MCP integrations)</li>
+            <li>Prompt injection attacks</li>
+            <li>Data exfiltration via agent outputs</li>
+            <li>Agent-to-agent trust exploitation</li>
+            <li>Visibility gaps — only 38% of organizations monitor AI traffic end-to-end</li>
+            <li>Identity-based attacks targeting API keys and tokens</li>
+          </ul>
+          <p class="modal-body-text" style="margin-top:10px;">For regulated industries: logs must be immutable, encrypted, and retained per regulatory requirements — typically 7 years for financial services.</p>
+        </div>
+      </div>
     </div>
 
     <!-- Consulting Modal -->
