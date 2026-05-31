@@ -61,13 +61,13 @@
 - [ ] Link to or summarize any published writing, talks, or conference appearances
 
 ### 10. SEO and meta improvements
-- [ ] Update meta description from generic to keyword-rich: *"AI risk management, GRC strategy, and cybersecurity leadership portfolio of Deandra Lauren Rodricks"*
-- [ ] Add Open Graph tags so the site previews well when shared on LinkedIn
+- [x] Update meta description from generic to keyword-rich
+- [x] Add Open Graph + Twitter Card tags so the site previews well when shared on LinkedIn
 
 ### 11. Accessibility and performance
-- [ ] Add `alt` text to all images if not already present
-- [ ] Test on mobile — ensure project modals are usable on smaller screens
-- [ ] Lazy-load project images to improve page load speed
+- [x] Add `alt` text to all images if not already present — all images already had alt text
+- [x] Test on mobile — project modals scroll correctly and are fully readable on 390px
+- [x] Lazy-load modal images (profile + logo exempt as above-the-fold)
 
 ---
 
