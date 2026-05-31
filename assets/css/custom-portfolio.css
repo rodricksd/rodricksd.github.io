@@ -559,15 +559,30 @@
 /* ── Project filters ── */
 .project-filters {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 40px;
+}
+
+.project-filter-primary {
+  display: flex;
+  gap: 0;
+  border: 1px solid #C5A880;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.project-filter-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
 }
 
 .filter-btn {
   padding: 7px 22px;
-  border: 1px solid #C5A880;
+  border: none;
   background: none;
   color: var(--text);
   font-size: 12px;
@@ -575,14 +590,35 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
-  border-radius: 2px;
   transition: background 0.2s ease, color 0.2s ease;
+}
+
+.filter-btn--primary {
+  border-right: 1px solid #C5A880;
+  min-width: 120px;
+}
+
+.filter-btn--primary:last-child {
+  border-right: none;
+}
+
+.filter-btn--cat {
+  border: 1px solid rgba(197, 168, 128, 0.5);
+  border-radius: 2px;
+  font-size: 11px;
+  padding: 5px 16px;
 }
 
 .filter-btn:hover,
 .filter-btn.active {
   background: #C5A880;
   color: #1B263B;
+}
+
+.filter-btn--primary.active {
+  background: #C5A880;
+  color: #1B263B;
+  font-weight: 700;
 }
 
 .project-col {

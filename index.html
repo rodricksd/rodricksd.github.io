@@ -284,14 +284,44 @@
           </div>
 
           <div class="project-filters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="ai-automation">AI &amp; Automation</button>
-            <button class="filter-btn" data-filter="cybersecurity">Cybersecurity</button>
-            <button class="filter-btn" data-filter="engineering">Engineering</button>
+            <div class="project-filter-primary">
+              <button class="filter-btn filter-btn--primary active" data-filter="selected">Selected</button>
+              <button class="filter-btn filter-btn--primary" data-filter="all">All Projects</button>
+            </div>
+            <div class="project-filter-cats" style="display:none;">
+              <button class="filter-btn filter-btn--cat active" data-filter="all">All</button>
+              <button class="filter-btn filter-btn--cat" data-filter="ai-automation">AI &amp; Automation</button>
+              <button class="filter-btn filter-btn--cat" data-filter="cybersecurity">Cybersecurity</button>
+              <button class="filter-btn filter-btn--cat" data-filter="engineering">Engineering</button>
+            </div>
           </div>
 
           <div class="row projects-grid">
-            <div class="col-md-4 project-col" data-category="ai-automation">
+            <div class="col-md-4 project-col" data-category="cybersecurity" data-featured="true">
+              <div class="project-card">
+                <i class="fa fa-sitemap project-icon"></i>
+                <h4>AI Governance &amp; Risk Framework for SDLC</h4>
+                <p class="project-org">Purdue University · Northern Trust</p>
+                <span class="project-tag">Cybersecurity</span>
+                <span class="project-tag project-tag--active">In Progress</span>
+                <button class="project-details-btn" onclick="openModal('ai-rmf-modal')">View Research &#8594;</button>
+                <p>
+                  Building an enterprise-grade AI risk governance framework for an organization
+                  integrating AI-driven agents across their SDLC. Aligned with NIST AI RMF,
+                  the work produces a structured risk taxonomy, a controls-to-SDLC-phase
+                  mapping, and policy objectives for responsible AI adoption.
+                </p>
+                <div class="tech-stack">
+                  <span class="tech-pill">NIST AI RMF</span>
+                  <span class="tech-pill">GRC</span>
+                  <span class="tech-pill">MITRE ATLAS</span>
+                  <span class="tech-pill">OWASP LLM Top 10</span>
+                  <span class="tech-pill">AI Governance</span>
+                  <span class="tech-pill">SDLC</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 project-col" data-category="ai-automation" data-featured="true">
               <div class="project-card">
                 <i class="fa fa-microphone project-icon"></i>
                 <h4>AI Voice Agent</h4>
@@ -316,7 +346,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4 project-col" data-category="ai-automation">
+            <div class="col-md-4 project-col" data-category="ai-automation" data-featured="true">
               <div class="project-card">
                 <i class="fa fa-cogs project-icon"></i>
                 <h4>LLM Workflow Automation</h4>
@@ -336,30 +366,6 @@
                   <span class="tech-pill">Workflow Automation</span>
                   <span class="tech-pill">Data Analysis</span>
                   <span class="tech-pill">Service Scoring Matrix</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 project-col" data-category="cybersecurity">
-              <div class="project-card">
-                <i class="fa fa-sitemap project-icon"></i>
-                <h4>AI Governance &amp; Risk Framework for SDLC</h4>
-                <p class="project-org">Purdue University · Northern Trust</p>
-                <span class="project-tag">Cybersecurity</span>
-                <span class="project-tag project-tag--active">In Progress</span>
-                <button class="project-details-btn" onclick="openModal('ai-rmf-modal')">View Research &#8594;</button>
-                <p>
-                  Building an enterprise-grade AI risk governance framework for an organization
-                  integrating AI-driven agents across their SDLC. Aligned with NIST AI RMF,
-                  the work produces a structured risk taxonomy, a controls-to-SDLC-phase
-                  mapping, and policy objectives for responsible AI adoption.
-                </p>
-                <div class="tech-stack">
-                  <span class="tech-pill">NIST AI RMF</span>
-                  <span class="tech-pill">GRC</span>
-                  <span class="tech-pill">MITRE ATLAS</span>
-                  <span class="tech-pill">OWASP LLM Top 10</span>
-                  <span class="tech-pill">AI Governance</span>
-                  <span class="tech-pill">SDLC</span>
                 </div>
               </div>
             </div>
@@ -900,28 +906,57 @@
       revealAboutCards();
 
       // Project filters
-      document.querySelectorAll(".filter-btn").forEach(function(btn) {
-        btn.addEventListener("click", function() {
-          var filter = this.dataset.filter;
-          document.querySelectorAll(".filter-btn").forEach(function(b) {
-            b.classList.remove("active");
+      var activeCatFilter = "all";
+
+      function applyProjectFilter(mode) {
+        var cols = document.querySelectorAll(".project-col");
+        cols.forEach(function(col) { col.style.opacity = "0"; });
+        setTimeout(function() {
+          cols.forEach(function(col) {
+            var show;
+            if (mode === "selected") {
+              show = col.dataset.featured === "true";
+            } else {
+              show = activeCatFilter === "all" || col.dataset.category === activeCatFilter;
+            }
+            col.style.display = show ? "" : "none";
           });
-          this.classList.add("active");
-
-          var cols = document.querySelectorAll(".project-col");
-          cols.forEach(function(col) { col.style.opacity = "0"; });
-
-          setTimeout(function() {
+          requestAnimationFrame(function() {
             cols.forEach(function(col) {
-              var match = filter === "all" || col.dataset.category === filter;
-              col.style.display = match ? "" : "none";
+              if (col.style.display !== "none") col.style.opacity = "1";
             });
-            requestAnimationFrame(function() {
-              cols.forEach(function(col) {
-                if (col.style.display !== "none") col.style.opacity = "1";
-              });
+          });
+        }, 200);
+      }
+
+      var currentMode = "selected";
+      applyProjectFilter(currentMode);
+
+      document.querySelectorAll(".filter-btn--primary").forEach(function(btn) {
+        btn.addEventListener("click", function() {
+          document.querySelectorAll(".filter-btn--primary").forEach(function(b) { b.classList.remove("active"); });
+          this.classList.add("active");
+          currentMode = this.dataset.filter;
+          var catRow = document.querySelector(".project-filter-cats");
+          if (currentMode === "all") {
+            catRow.style.display = "";
+          } else {
+            catRow.style.display = "none";
+            activeCatFilter = "all";
+            document.querySelectorAll(".filter-btn--cat").forEach(function(b) {
+              b.classList.toggle("active", b.dataset.filter === "all");
             });
-          }, 220);
+          }
+          applyProjectFilter(currentMode);
+        });
+      });
+
+      document.querySelectorAll(".filter-btn--cat").forEach(function(btn) {
+        btn.addEventListener("click", function() {
+          document.querySelectorAll(".filter-btn--cat").forEach(function(b) { b.classList.remove("active"); });
+          this.classList.add("active");
+          activeCatFilter = this.dataset.filter;
+          applyProjectFilter(currentMode);
         });
       });
 
