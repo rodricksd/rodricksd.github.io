@@ -253,21 +253,25 @@ html {
 .landing-scroll-cue {
     position: absolute;
     left: 50%;
-    bottom: 30px;
-    width: 42px;
-    height: 42px;
-    color: #fff;
-    font-size: 42px;
-    line-height: 42px;
-    text-align: center;
+    bottom: 32px;
     transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 32px;
+    line-height: 1;
+    text-decoration: none;
     opacity: max(0, calc(1 - (var(--landing-progress) / 0.18)));
     pointer-events: auto;
-    transition: color 0.3s ease;
+    animation: cue-bounce 2s ease-in-out infinite;
+    transition: color 0.25s;
 }
 
 .landing-scroll-cue:hover {
     color: #C5A880;
+}
+
+@keyframes cue-bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0);   }
+    50%       { transform: translateX(-50%) translateY(6px); }
 }
 
 #nav-wrap.nav-compact .landing-scroll-cue {
