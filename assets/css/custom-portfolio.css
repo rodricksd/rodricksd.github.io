@@ -2,6 +2,21 @@
   min-height: auto;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
+#nav-wrap .nav-brand {
+  text-shadow: 0 10px 28px rgba(0, 0, 0, 0.34);
+}
+
+#nav-wrap .nav-subtitle {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+}
+
 .landing-scroll-spacer {
   height: 72vh;
 }
@@ -199,6 +214,21 @@
   z-index: 1;
 }
 
+.hero-specialty-kicker {
+  display: inline-flex;
+  width: auto;
+  margin: 0 0 12px;
+  padding: 6px 10px;
+  border: 1px solid rgba(197, 168, 128, 0.55);
+  border-radius: 3px;
+  color: #A53030;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
 .text-accent {
   color: #A53030;
 }
@@ -227,6 +257,14 @@
   line-height: 1.65;
   color: var(--text);
   margin: 0;
+}
+
+.about-hero-content .hero-specialty-kicker {
+  width: auto;
+  margin: 0 0 12px;
+  color: #A53030;
+  font-size: 10px;
+  line-height: 1.3;
 }
 
 .hero-actions-row {
@@ -261,6 +299,126 @@
 .about-me + .my-services .section-heading {
   padding-top: 80px;
   padding-bottom: 50px;
+}
+
+[data-section="section2"],
+[data-section="section5"] {
+  --dark-section-bg: #0D1823;
+  --dark-panel-bg: #132033;
+  --dark-panel-bg-strong: #18283D;
+  --dark-border: rgba(197, 168, 128, 0.22);
+  --dark-border-soft: rgba(255, 255, 255, 0.12);
+  --dark-text: rgba(255, 255, 255, 0.86);
+  --dark-muted: rgba(255, 255, 255, 0.62);
+  --dark-faint: rgba(255, 255, 255, 0.42);
+  background: var(--dark-section-bg);
+  border-bottom: 0;
+  box-shadow: 0 0 0 100vmax var(--dark-section-bg);
+  clip-path: inset(0 -100vmax);
+  padding-bottom: 90px;
+}
+
+[data-section="section2"] .section-heading h2,
+[data-section="section2"] .section-heading span,
+[data-section="section5"] .section-heading h2,
+[data-section="section5"] .section-heading span {
+  color: #fff;
+}
+
+[data-section="section2"] .section-heading span,
+[data-section="section5"] .section-heading span {
+  color: var(--dark-muted);
+}
+
+[data-section="section2"] .content-card {
+  background: var(--dark-panel-bg);
+  border-color: var(--dark-border-soft);
+  border-left-color: #C5A880;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.18);
+}
+
+[data-section="section2"] .content-card h4,
+[data-section="section2"] .content-card p {
+  color: var(--dark-text);
+}
+
+[data-section="section2"] .content-card h4 {
+  color: #fff;
+}
+
+[data-section="section2"] .content-card .meta {
+  color: var(--dark-faint);
+}
+
+[data-section="section2"] .content-card .role-title {
+  color: #E1C99B;
+}
+
+[data-section="section2"] .hl {
+  color: #E1C99B;
+}
+
+[data-section="section2"] .shortlist-badge {
+  background: rgba(197, 168, 128, 0.12);
+  border-color: var(--dark-border);
+  color: #E1C99B;
+}
+
+[data-section="section2"] .shortlist-preview-caption strong {
+  color: #1B263B;
+}
+
+[data-section="section5"] .sp-wrap {
+  background: var(--dark-panel-bg);
+  border-color: var(--dark-border-soft);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.18);
+}
+
+[data-section="section5"] .sp-list {
+  background: #101B2A;
+  border-right-color: var(--dark-border-soft);
+}
+
+[data-section="section5"] .sp-list-item {
+  border-bottom-color: var(--dark-border-soft);
+}
+
+[data-section="section5"] .sp-list-item:hover {
+  background: rgba(197, 168, 128, 0.09);
+}
+
+[data-section="section5"] .sp-list-item.is-active {
+  background: var(--dark-panel-bg-strong);
+  border-left-color: #C5A880;
+}
+
+[data-section="section5"] .sp-item-year,
+[data-section="section5"] .sp-detail-year {
+  color: #E1C99B;
+}
+
+[data-section="section5"] .sp-item-title,
+[data-section="section5"] .sp-detail-title {
+  color: #fff;
+}
+
+[data-section="section5"] .sp-detail-text {
+  color: var(--dark-text);
+}
+
+[data-section="section5"] .sp-cat-cert {
+  background: rgba(255, 255, 255, 0.11);
+  color: var(--dark-text);
+}
+
+[data-section="section5"] .sp-cat-award {
+  background: rgba(197, 168, 128, 0.14);
+  color: #E1C99B;
+}
+
+[data-section="section5"] .sp-cat-leadership {
+  background: rgba(165, 48, 48, 0.28);
+  color: #F0B0A8;
 }
 
 .about-rest .container {
@@ -605,6 +763,17 @@
   .shortlist-preview-caption {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  #nav-wrap .nav-brand,
+  #nav-wrap .nav-subtitle {
+    width: calc(100% - 40px);
+  }
+
+  #nav-wrap .nav-subtitle {
+    letter-spacing: 0.04em;
   }
 }
 
@@ -1517,6 +1686,16 @@
   border-color: var(--accent);
 }
 
+[data-section="section5"] .awards-activity-link {
+  color: #E1C99B;
+  border-bottom-color: rgba(225, 201, 155, 0.42);
+}
+
+[data-section="section5"] .awards-activity-link:hover {
+  color: #fff;
+  border-bottom-color: #E1C99B;
+}
+
 .awards-activity-arrow {
   transition: transform 0.18s;
 }
@@ -1527,15 +1706,17 @@
 
 /* ── Recruiter Pitch Section ── */
 .recruiter-pitch-section {
-  background: #1B263B;
+  background: #0D1823;
   padding: 72px 0;
 }
 
 .recruiter-pitch-layout {
   display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 60px;
+  grid-template-columns: 1fr;
+  gap: 42px;
   align-items: start;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .recruiter-pitch-card {
@@ -1548,7 +1729,7 @@
   font-weight: 900;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #C5A880;
+  color: #E1C99B;
   margin-bottom: 16px;
   border-bottom: 1px solid rgba(197, 168, 128, 0.35);
   padding-bottom: 4px;
@@ -1566,20 +1747,20 @@
 .recruiter-pitch-body {
   font-size: 17px;
   line-height: 1.8;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.8);
   margin: 0 0 36px;
 }
 
 .recruiter-pitch-contact {
-  padding-top: 44px;
-  border-left: 1px solid rgba(197, 168, 128, 0.2);
-  padding-left: 40px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(197, 168, 128, 0.24);
 }
 
 .recruiter-contact-items {
   display: flex;
-  flex-direction: column;
-  gap: 28px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 28px 44px;
   margin-top: 24px;
 }
 
@@ -1594,25 +1775,25 @@
   font-weight: 900;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(225, 201, 155, 0.68);
 }
 
 .recruiter-contact-value {
   font-size: 14px;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.84);
   text-decoration: none;
   transition: color 0.2s;
   word-break: break-all;
 }
 
 .recruiter-contact-value:hover {
-  color: #C5A880;
+  color: #E1C99B;
 }
 
 .recruiter-pitch-btn {
   display: inline-block;
-  background: #C5A880;
+  background: #E1C99B;
   color: #1B263B;
   font-family: 'Lato', sans-serif;
   font-size: 12px;
@@ -1632,21 +1813,7 @@
 
 @media (max-width: 900px) {
   .recruiter-pitch-layout {
-    grid-template-columns: 1fr;
     gap: 40px;
-  }
-
-  .recruiter-pitch-contact {
-    border-left: none;
-    border-top: 1px solid rgba(197, 168, 128, 0.2);
-    padding-left: 0;
-    padding-top: 32px;
-  }
-
-  .recruiter-contact-items {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 24px;
   }
 }
 
