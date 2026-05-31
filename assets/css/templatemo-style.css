@@ -160,7 +160,7 @@ html {
 
 #nav-wrap.nav-compact {
     height: 112px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 24px rgba(0, 0, 0, 0.22);
 }
 
 .nav-top {
@@ -232,13 +232,15 @@ html {
 
 #nav {
     display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     left: 0;
     bottom: 0;
     list-style: none;
     margin: 0;
-    padding: 0;
-    border-top: 2px solid #C5A880;
+    padding: 0 12px;
+    border-top: 1px solid rgba(197, 168, 128, 0.35);
     width: 100%;
     opacity: var(--landing-nav-opacity);
     pointer-events: none;
@@ -272,23 +274,83 @@ html {
     display: none;
 }
 #nav li {
-    flex: 1;
+    flex: none;
     text-align: center;
 }
 
 #nav li a {
-    color: var(--nav-text);
-    font-size: 14px;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 11px;
     font-weight: 700;
-    line-height: 50px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 46px;
     display: block;
-    transition: all 0.5s;
+    padding: 0 18px;
+    position: relative;
+    transition: color 0.22s ease;
+    text-decoration: none;
 }
 
-#nav li a:hover,
-#nav li.active a {
+#nav li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 18px;
+    right: 18px;
+    height: 2px;
     background: #C5A880;
-    color: #1B263B;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.25s ease;
+}
+
+#nav li a:hover {
+    color: #fff;
+    background: none;
+}
+
+#nav li a:hover::after {
+    transform: scaleX(1);
+}
+
+#nav li.active a {
+    color: #fff;
+    background: none;
+}
+
+#nav li.active a::after {
+    transform: scaleX(1);
+}
+
+/* Get in touch CTA */
+.nav-cta-item {
+    margin-left: auto;
+    padding-right: 8px;
+}
+
+.nav-cta-item a {
+    border: 1px solid rgba(197, 168, 128, 0.5) !important;
+    border-radius: 2px;
+    padding: 0 18px !important;
+    line-height: 28px !important;
+    font-size: 11px !important;
+    color: #C5A880 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    display: inline-block !important;
+    transition: background 0.22s, color 0.22s, border-color 0.22s !important;
+}
+
+.nav-cta-item a:hover {
+    background: rgba(197, 168, 128, 0.12) !important;
+    border-color: #C5A880 !important;
+    color: #C5A880 !important;
+}
+
+.nav-cta-item a::after {
+    display: none !important;
 }
 
 .nav-social-row {
@@ -797,7 +859,6 @@ section.contact-me {
 
     #nav-wrap.nav-compact #nav.open {
         display: flex;
-        /* Drop below the compact bar instead of clipping inside it */
         position: fixed;
         top: 64px;
         bottom: auto;
@@ -806,19 +867,41 @@ section.contact-me {
         background: var(--nav-bg);
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
         z-index: 9998;
+        padding: 0;
     }
 
     #nav li {
         flex: none;
         width: 100%;
         text-align: left;
-        border-bottom: 2px solid var(--nav-text);
+        border-bottom: 1px solid rgba(197, 168, 128, 0.15);
     }
 
     #nav li a {
         line-height: 1.4;
         padding: 14px 20px;
-        font-size: 14px;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+    }
+
+    #nav li a::after {
+        display: none;
+    }
+
+    #nav li a:hover,
+    #nav li.active a {
+        color: #C5A880;
+        background: rgba(197, 168, 128, 0.08);
+    }
+
+    .nav-cta-item {
+        margin-left: 0;
+        padding-right: 0;
+        padding: 10px 20px;
+    }
+
+    .nav-cta-item a {
+        display: inline-block !important;
     }
 
     .nav-social-row {

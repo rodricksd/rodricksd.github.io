@@ -220,10 +220,19 @@
   margin: 0;
 }
 
+.hero-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 22px;
+  gap: 12px;
+}
+
 .about-hero-content .hero-cv-button {
   display: flex;
   justify-content: flex-start;
-  margin-top: 22px;
+  margin-top: 0;
+  flex-shrink: 0;
 }
 
 .about-hero-content .hero-cv-button a {
@@ -1059,6 +1068,62 @@
   .dot-head .dot-cat {
     display: none;
   }
+}
+
+/* ── Hero contact icons ── */
+.hero-contact-row {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.hero-contact-link {
+  position: relative;
+  color: rgba(27, 38, 59, 0.38);
+  font-size: 22px;
+  line-height: 1;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+
+.hero-contact-link:hover {
+  color: var(--text);
+}
+
+.hero-contact-tooltip {
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--text);
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  padding: 5px 10px;
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s;
+  z-index: 10;
+}
+
+.hero-contact-tooltip::before {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-right-color: var(--text);
+}
+
+.hero-contact-link:hover .hero-contact-tooltip {
+  opacity: 1;
 }
 
 /* ── Awards → Activity CTA link ── */
