@@ -52,8 +52,9 @@
 ## 🟢 Nice to Have
 
 ### 8. Add a skills/tools bar
-- [ ] Create a visual section for key tools: SIEM, EDR, GRC frameworks, LLM platforms, CI/CD, etc.
-- [ ] Helps recruiters and hiring managers scan your technical stack quickly
+- [x] Create a visual section for key tools: SIEM, EDR, GRC frameworks, LLM platforms, CI/CD, etc.
+- [x] Helps recruiters and hiring managers scan your technical stack quickly
+- [x] Added soft skills section with 6 evidence-backed leadership competencies
 
 ### 9. Add social proof
 - [ ] Pull a short quote from a manager, professor, or colleague as a testimonial
