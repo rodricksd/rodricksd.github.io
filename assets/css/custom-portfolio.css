@@ -743,9 +743,9 @@ body {
 .shortlist-preview-image img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 6;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
 }
 
 .shortlist-preview-caption {
@@ -1706,18 +1706,32 @@ body {
   overflow: hidden;
 }
 
+.sp-detail-layout {
+  display: flex;
+  height: 100%;
+}
+
+.sp-detail-img {
+  flex: 0 0 42%;
+  background: #0a1520;
+  overflow: hidden;
+}
+
 .sp-detail-img img {
   width: 100%;
-  height: 240px;
-  object-fit: cover;
-  object-position: center top;
+  height: 100%;
+  object-fit: contain;
   display: block;
   transition: transform 0.35s ease;
 }
 
 .sp-detail-img:hover img { transform: scale(1.03); }
 
-.sp-detail-body { padding: 18px 20px 22px; }
+.sp-detail-body {
+  flex: 1;
+  padding: 18px 20px 22px;
+  overflow-y: auto;
+}
 
 .sp-detail-year {
   font-size: 11px;

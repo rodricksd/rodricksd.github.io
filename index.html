@@ -333,7 +333,7 @@
           <!-- Dual Bachelor's -->
           <div class="content-card edu-card scroll-reveal">
             <div class="edu-dual-header">
-              <span class="edu-dual-label">Dual Bachelor's — Completed Simultaneously</span>
+              <span class="edu-dual-label">Dual Bachelor's, Completed Simultaneously</span>
             </div>
             <div class="edu-dual-degrees">
               <div class="edu-degree">
@@ -1080,7 +1080,7 @@
       },
       'k2025': {
         cat: 'Award', catClass: 'sp-cat-award',
-        title: 'MIRA Awards Finalist — Resilience',
+        title: 'MIRA Awards Finalist: Resilience',
         detail: 'Finalist for the Resilience Award at TechPoint\'s MIRA Awards — Best of Tech + Innovation 2025. Recognised among Indiana\'s top tech professionals for navigating the technology landscape with grit and purpose.',
         img: 'assets/content/mira_awards_pose.jpeg',
         imgAlt: 'MIRA Awards 2025',
@@ -1088,7 +1088,7 @@
       },
       'k2024a': {
         cat: 'Certification', catClass: 'sp-cat-cert',
-        title: 'Harvard Business School — Business Analytics',
+        title: 'Harvard Business School: Business Analytics',
         detail: 'Completed the Harvard Business School Online Business Analytics certificate programme (2024), building rigour in data-driven decision-making, statistical analysis, and translating data insights into strategic business decisions.',
         img: 'assets/content/harvard_online_buisness_analytics.jpeg',
         imgAlt: 'Harvard Business School Certificate',
@@ -1113,7 +1113,8 @@
         cat: 'Award', catClass: 'sp-cat-award',
         title: 'TechPoint Xtern Value Award · Xtern Leader',
         detail: 'Earned the TechPoint Xtern Value Award for Investment in Community — employer cited going beyond job scope to engage across the business and contribute meaningfully to organisational culture. Also served as a TechPoint Xtern Leader, guiding a cohort of interns to build teamwork, bonding, and a sense of community within the programme.',
-        img: null,
+        img: 'assets/content/xtern_value_award.jpeg',
+        imgAlt: 'TechPoint Xtern Value Award',
         tags: ['Award', 'Leadership', 'TechPoint']
       },
       'k2019': {
@@ -1146,14 +1147,22 @@
         el.classList.toggle('is-active', el.dataset.key === key);
       });
       var panel = document.getElementById('sp-detail');
-      panel.innerHTML =
-        (d.img ? '<a href="' + d.img + '" data-lightbox="awards" data-title="' + d.imgAlt + '" class="sp-detail-img"><img src="' + d.img + '" alt="' + d.imgAlt + '" loading="lazy"></a>' : '') +
+      var bodyHtml =
         '<div class="sp-detail-body">' +
           '<span class="sp-cat ' + d.catClass + '" style="display:inline-block;">' + d.cat + '</span>' +
           '<h3 class="sp-detail-title">' + d.title + '</h3>' +
           '<p class="sp-detail-text">' + d.detail + '</p>' +
           '<div class="sp-detail-tags">' + d.tags.map(function(t){ return '<span class="dot-tag">' + t + '</span>'; }).join('') + '</div>' +
         '</div>';
+      if (d.img) {
+        panel.innerHTML =
+          '<div class="sp-detail-layout">' +
+            '<a href="' + d.img + '" data-lightbox="awards" data-title="' + d.imgAlt + '" class="sp-detail-img"><img src="' + d.img + '" alt="' + d.imgAlt + '" loading="lazy"></a>' +
+            bodyHtml +
+          '</div>';
+      } else {
+        panel.innerHTML = bodyHtml;
+      }
     }
 
     document.addEventListener('DOMContentLoaded', function() {
