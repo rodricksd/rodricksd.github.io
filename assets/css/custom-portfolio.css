@@ -310,13 +310,15 @@ body {
 }
 
 .about-hero-content .hero-cv-button a {
-  background-color: #1B263B;
-  color: #fff;
+  background-color: #C5A880;
+  color: #1B263B;
+  border: 1px solid #C5A880;
 }
 
 .about-hero-content .hero-cv-button a:hover {
-  background-color: #C5A880;
-  color: #1B263B;
+  background-color: transparent;
+  color: #C5A880;
+  border-color: #C5A880;
 }
 
 .about-rest {
