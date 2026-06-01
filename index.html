@@ -1096,6 +1096,13 @@
         title: 'ISC2 Certified in Cybersecurity (CC)',
         detail: 'Earned the ISC2 Certified in Cybersecurity (CC) credential (2024), validating foundational knowledge across security principles, business continuity, access controls, network security, and incident response.',
         img: null,
+        link: 'https://www.credly.com/badges/c7c2c145-e894-43cc-8a60-5990fc64ded0/linked_in_profile',
+        credential: {
+          issuer: 'ISC2',
+          name: 'Certified in Cybersecurity',
+          shortName: 'CC',
+          status: 'Verified on Credly'
+        },
         tags: ['Certification', 'ISC2', 'Cybersecurity']
       },
       'k2023': {
@@ -1152,10 +1159,24 @@
           '<p class="sp-detail-text">' + d.detail + '</p>' +
           '<div class="sp-detail-tags">' + d.tags.map(function(t){ return '<span class="dot-tag">' + t + '</span>'; }).join('') + '</div>' +
         '</div>';
+      var credentialHtml = d.credential
+        ? '<a class="sp-credential-preview" href="' + d.link + '" target="_blank" rel="noopener noreferrer" aria-label="View ' + d.credential.name + ' credential on Credly">' +
+            '<span class="sp-credential-issuer">' + d.credential.issuer + '</span>' +
+            '<span class="sp-credential-mark">' + d.credential.shortName + '</span>' +
+            '<span class="sp-credential-name">' + d.credential.name + '</span>' +
+            '<span class="sp-credential-status"><i class="fa fa-check-circle"></i> ' + d.credential.status + '</span>' +
+          '</a>'
+        : '';
       if (d.img) {
         panel.innerHTML =
           '<div class="sp-detail-layout">' +
             '<a href="' + d.img + '" data-lightbox="awards" data-title="' + d.imgAlt + '" class="sp-detail-img"><img src="' + d.img + '" alt="' + d.imgAlt + '" loading="lazy"></a>' +
+            bodyHtml +
+          '</div>';
+      } else if (d.credential) {
+        panel.innerHTML =
+          '<div class="sp-detail-layout sp-detail-layout--credential">' +
+            credentialHtml +
             bodyHtml +
           '</div>';
       } else {
