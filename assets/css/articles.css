@@ -1,5 +1,11 @@
 /* ── Articles — shared styles ────────────────────────────── */
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 /* ── Home button (fixed, top-right) ── */
 .home-btn {
   position: fixed;
@@ -15,25 +21,35 @@
   justify-content: center;
   box-shadow: 0 2px 14px rgba(0,0,0,0.22);
   text-decoration: none;
-  transition: background 0.2s, transform 0.2s;
+  animation: home-btn-quiet-halo 4.6s ease-in-out infinite;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.home-btn::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 1px solid rgba(197, 168, 128, 0.34);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  animation: home-btn-halo-ring 4.6s ease-in-out infinite;
 }
 
 .home-btn:hover {
   background: #C5A880;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  animation-play-state: paused;
   transform: scale(1.06);
 }
 
 .home-btn img {
-  width: 26px;
-  height: 26px;
+  width: 33px;
+  height: auto;
   object-fit: contain;
-  filter: brightness(0) invert(1);
   display: block;
-  transition: filter 0.2s;
-}
-
-.home-btn:hover img {
-  filter: brightness(0) saturate(0%);
+  position: relative;
+  z-index: 1;
 }
 
 .home-btn-tooltip {
@@ -66,6 +82,28 @@
 
 .home-btn:hover .home-btn-tooltip {
   opacity: 1;
+}
+
+@keyframes home-btn-quiet-halo {
+  0%,
+  100% {
+    box-shadow: 0 2px 14px rgba(0,0,0,0.22);
+  }
+  50% {
+    box-shadow: 0 3px 16px rgba(0,0,0,0.24);
+  }
+}
+
+@keyframes home-btn-halo-ring {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
 }
 
 /* ── Sticky article top bar ── */
@@ -139,6 +177,7 @@
 /* ── Article wrapper ── */
 .article-wrapper {
   max-width: 700px;
+  width: 100%;
   margin: 0 auto;
   padding: 52px 24px 72px;
 }
@@ -162,6 +201,7 @@
   color: #1B263B;
   margin: 0 0 20px;
   letter-spacing: -0.3px;
+  overflow-wrap: break-word;
 }
 
 .article-meta-row {
@@ -197,6 +237,8 @@
   background: rgba(226, 213, 200, 0.22);
   padding: 16px 18px;
   margin: -16px 0 40px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .article-audio-header {
@@ -225,6 +267,7 @@
 .article-audio audio {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: 38px;
 }
 
@@ -235,6 +278,7 @@
   line-height: 1.78;
   color: #1B263B;
   margin: 0 0 22px;
+  overflow-wrap: break-word;
 }
 
 .article-body h2 {
@@ -701,6 +745,75 @@
   margin: 32px 0 0 !important;
 }
 
+/* ── Website CTA ── */
+.article-website-cta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 44px;
+  padding: 22px 24px;
+  border: 1px solid rgba(27, 38, 59, 0.12);
+  border-left: 3px solid #C5A880;
+  border-radius: 4px;
+  background: linear-gradient(135deg, rgba(197, 168, 128, 0.12), rgba(165, 48, 48, 0.04));
+}
+
+.article-website-cta-logo {
+  flex: 0 0 96px;
+  width: 96px;
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-website-cta-logo img {
+  display: block;
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(71%) sepia(19%) saturate(649%) hue-rotate(357deg) brightness(90%) contrast(87%);
+}
+
+.article-website-cta-copy {
+  min-width: 0;
+}
+
+.article-website-cta-label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #A53030;
+}
+
+.article-website-cta p {
+  margin: 0 0 14px !important;
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+  color: rgba(27, 38, 59, 0.78) !important;
+}
+
+.article-website-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #A53030;
+  text-decoration: none;
+}
+
+.article-website-cta a:hover {
+  color: #1B263B;
+}
+
 /* ── Author bio footer ── */
 .article-bio {
   margin-top: 52px;
@@ -735,8 +848,8 @@
   }
 
   .home-btn img {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: auto;
   }
 
   .home-btn-tooltip {
@@ -842,6 +955,24 @@
     padding: 14px 16px;
   }
 
+  .article-website-cta {
+    align-items: flex-start;
+    gap: 14px;
+    margin-top: 36px;
+    padding: 18px 18px;
+  }
+
+  .article-website-cta-logo {
+    flex-basis: 64px;
+    width: 64px;
+    height: 58px;
+  }
+
+  .article-website-cta-logo img {
+    width: 52px;
+    height: 52px;
+  }
+
   .key-takeaways {
     padding: 18px 20px;
   }
@@ -888,8 +1019,10 @@
 @media (prefers-reduced-motion: reduce) {
   .home-btn,
   .home-btn img,
+  .home-btn::before,
   .nav-link-card,
   .series-card {
+    animation: none;
     transition: none;
   }
 }
