@@ -994,7 +994,7 @@
         window.addEventListener("load", function() {
           setTimeout(function() {
             showSection("#" + initialSection, true);
-            checkSection();
+            setTimeout(checkSection, 820);
           }, 500);
         });
       }
