@@ -991,19 +991,10 @@
       }
 
       if (initialSection) {
-        var returnScrollAttempts = 0;
-        var settleReturnScroll = function settleReturnScroll() {
-          returnScrollAttempts += 1;
-          showSection("#" + initialSection, false);
+        window.addEventListener("load", function() {
+          showSection("#" + initialSection, true);
           checkSection();
-
-          if (returnScrollAttempts < 14) {
-            setTimeout(settleReturnScroll, returnScrollAttempts < 3 ? 80 : 220);
-          }
-        };
-
-        setTimeout(settleReturnScroll, 0);
-        window.addEventListener("load", settleReturnScroll);
+        });
       }
 
       function revealAboutCards() {
