@@ -271,12 +271,26 @@ body {
   height: 38px;
 }
 
-/* ── Article hero image ── */
+/* ── Article hero image (float right) ── */
 .article-hero-image {
-  width: 100%;
+  float: right;
+  width: 280px;
   border-radius: 6px;
-  display: block;
-  margin: 0 0 40px;
+  margin: 0 0 20px 32px;
+}
+
+.article-body::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+@media (max-width: 768px) {
+  .article-hero-image {
+    float: none;
+    width: 100%;
+    margin: 0 0 24px;
+  }
 }
 
 /* ── Article body ── */
