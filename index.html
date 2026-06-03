@@ -992,8 +992,13 @@
 
       if (initialSection) {
         window.addEventListener("load", function() {
-          showSection("#" + initialSection, true);
-          checkSection();
+          var run = function() {
+            showSection("#" + initialSection, true);
+            checkSection();
+          };
+          document.fonts && document.fonts.ready
+            ? document.fonts.ready.then(run)
+            : run();
         });
       }
 
