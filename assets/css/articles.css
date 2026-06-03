@@ -37,7 +37,7 @@ body {
 }
 
 .home-btn:hover {
-  background: #C5A880;
+  background: #243450;
   box-shadow: 0 4px 16px rgba(0,0,0,0.2);
   animation-play-state: paused;
   transform: scale(1.06);
@@ -1024,5 +1024,53 @@ body {
   .series-card {
     animation: none;
     transition: none;
+  }
+}
+
+/* ── Activity page body (wider than the article hub) ── */
+.articles-body--wide {
+  max-width: 900px;
+}
+
+/* ── Large screens (1600px+) ── */
+@media (min-width: 1600px) {
+  .articles-hero-inner {
+    max-width: 920px;
+  }
+
+  .articles-body {
+    max-width: 860px;
+  }
+
+  .articles-body--wide {
+    max-width: 1100px;
+  }
+
+  .articles-hero h1 {
+    font-size: clamp(38px, 2.375vw, 56px);
+  }
+
+  .articles-hero p {
+    max-width: 660px;
+    font-size: clamp(16px, 1vw, 22px);
+  }
+}
+
+/* ── Extra-large screens / presentations (1920px+) ── */
+@media (min-width: 1920px) {
+  .articles-hero-inner {
+    max-width: 1100px;
+  }
+
+  .articles-body {
+    max-width: 1000px;
+  }
+
+  .articles-body--wide {
+    max-width: 1300px;
+  }
+
+  .articles-hero p {
+    max-width: 760px;
   }
 }

@@ -60,9 +60,8 @@
     }
 
     function resizeCanvas() {
-      var rect = navWrap.getBoundingClientRect();
-      var nextWidth = Math.max(1, Math.round(rect.width));
-      var nextHeight = Math.max(1, Math.round(rect.height));
+      var nextWidth = Math.max(1, Math.round(window.innerWidth));
+      var nextHeight = Math.max(1, Math.round(window.innerHeight));
       var nextPixelRatio = Math.min(window.devicePixelRatio || 1, 2);
       updateSafeZones();
       if (nextWidth === width && nextHeight === height && nextPixelRatio === pixelRatio) return;
@@ -84,7 +83,7 @@
     function buildNodes() {
       pkt = null;
       nodes = [];
-      var count = window.innerWidth <= 768 ? 16 : 26;
+      var count = window.innerWidth <= 768 ? 16 : Math.round(Math.min(32, Math.max(26, width / 64)));
       var attempts = 0;
       while (nodes.length < count && attempts < count * 8) {
         attempts++;
@@ -235,24 +234,25 @@
 
   function updateLandingNav() {
     if (!navWrap) return;
-    var transitionDistance = Math.max(window.innerHeight * 0.72, 420);
+    var transitionFactor = window.innerWidth >= 1600 ? 0.9 : 0.72;
+    var transitionDistance = Math.max(window.innerHeight * transitionFactor, 420);
     var progress = Math.min(1, Math.max(0, window.scrollY / transitionDistance));
     var compactHeight = window.innerWidth <= 768 ? 64 : 112;
     var landingHeight = window.innerHeight - ((window.innerHeight - compactHeight) * progress);
-    var startLogo = window.innerWidth <= 768 ? 270 : 480;
+    var startLogo = window.innerWidth <= 768 ? 270 : Math.min(Math.max(window.innerWidth * 0.3, 480), 620);
     var logoSize = startLogo;
     var logoOpacity = Math.max(0, 1 - (progress / 0.62));
     var logoTop = window.innerHeight / 2;
     var vignetteOpacity = Math.max(0, 1 - (progress / 0.62));
     var minBrand = window.innerWidth <= 390 ? 17 : window.innerWidth <= 480 ? 20 : 32;
-    var startBrand = Math.min(Math.max(window.innerWidth * 0.042, minBrand), 60);
+    var startBrand = Math.min(Math.max(window.innerWidth * 0.042, minBrand), 72);
     var endBrand = window.innerWidth <= 768 ? 17 : 22;
     var brandSize = startBrand - ((startBrand - endBrand) * progress);
     var brandMargin = 8 - (6 * progress);
     var startTitleBottom = window.innerWidth <= 768 ? 92 : 118;
     var endTitleBottom = window.innerWidth <= 768 ? 8 : 58;
     var titleBottom = startTitleBottom - ((startTitleBottom - endTitleBottom) * progress);
-    var startSubtitle = Math.min(Math.max(window.innerWidth * 0.017, 16), 20);
+    var startSubtitle = Math.min(Math.max(window.innerWidth * 0.017, 16), 26);
     var endSubtitle = 13;
     var subtitleSize = startSubtitle - ((startSubtitle - endSubtitle) * progress);
     var navOpacity = Math.min(1, Math.max(0, (progress - 0.74) / 0.26));
@@ -271,10 +271,21 @@
     navWrap.classList.toggle("nav-compact", progress >= 1);
   }
 
+  var _navRafPending = false;
+  function _scheduleNavUpdate() {
+    if (!_navRafPending) {
+      _navRafPending = true;
+      requestAnimationFrame(function() {
+        _navRafPending = false;
+        updateLandingNav();
+      });
+    }
+  }
+
   updateLandingNav();
   initLandingLightTrails();
-  window.addEventListener("scroll", updateLandingNav, { passive: true });
-  window.addEventListener("resize", updateLandingNav);
+  window.addEventListener("scroll", _scheduleNavUpdate, { passive: true });
+  window.addEventListener("resize", _scheduleNavUpdate);
 
   mobileToggle.addEventListener("click", function() {
     navList.classList.toggle("open");
