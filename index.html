@@ -994,7 +994,10 @@
         window.addEventListener("load", function() {
           setTimeout(function() {
             showSection("#" + initialSection, true);
-            setTimeout(checkSection, 820);
+            setTimeout(function() {
+              $("#nav a").filter("[href*='\\#" + initialSection + "']")
+                .closest("li").addClass("active").siblings().removeClass("active");
+            }, 820);
           }, 500);
         });
       }
