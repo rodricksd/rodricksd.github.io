@@ -11,6 +11,11 @@
       content="Portfolio of Deandra Lauren Rodricks, AI risk management, GRC strategy, and cybersecurity leadership. Analyst to CEO."
     />
     <meta name="author" content="Deandra Lauren Rodricks" />
+    <script>
+      if (/[?&]return=/.test(window.location.search) && "scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+    </script>
 
     <!-- Open Graph -->
     <meta property="og:type"        content="website" />
@@ -44,7 +49,7 @@
   <body>
     <nav id="nav-wrap">
       <div class="nav-top">
-        <img src="assets/images/DLR_Logo.png?v=2" alt="DLR" class="dlr-logo-nav" />
+        <img src="assets/images/dlr-logo.png?v=2" alt="DLR" class="dlr-logo-nav" />
         <a class="nav-brand" href="#section1">Deandra Lauren Rodricks</a>
         <span class="nav-subtitle">GRC + AI Strategy | Analyst to CEO</span>
         <button id="mobile-nav-toggle" aria-label="Toggle navigation">&#9776;</button>
@@ -736,6 +741,12 @@
           </div>
 
           <div class="writing-list scroll-reveal">
+            <a href="articles/prompt-protect-01.html" class="writing-preview">
+              <span class="writing-preview-date">June 3, 2026</span>
+              <h4>AI Meets the CIA Triad: Going Back to Basics</h4>
+              <p>Mapping AI against the CIA triad — where it strengthens security and where it creates new cracks.</p>
+              <span class="writing-preview-series">Article Series &middot; Prompt &amp; Protect</span>
+            </a>
             <a href="articles/being-sheeo-01.html" class="writing-preview">
               <span class="writing-preview-date">May 30, 2026</span>
               <h4>I didn't plan to be a CEO. I just didn't say no.</h4>
@@ -922,8 +933,11 @@
         var direction = section.replace(/#/, ""),
           reqSection = $(".section").filter(
             '[data-section="' + direction + '"]'
-          ),
-          reqSectionPos = reqSection.offset().top - 112;
+          );
+
+        if (!reqSection.length) return;
+
+        var reqSectionPos = reqSection.offset().top - 112;
 
         if (isAnimate) {
           $("body, html").animate(
@@ -967,6 +981,30 @@
         e.preventDefault();
         showSection($(this).attr("href"), true);
       });
+
+      var initialSection = "";
+      if (window.URLSearchParams) {
+        initialSection = new URLSearchParams(window.location.search).get("return") || "";
+      }
+      if (!initialSection && window.location.hash) {
+        initialSection = window.location.hash.replace(/^#/, "");
+      }
+
+      if (initialSection) {
+        var returnScrollAttempts = 0;
+        var settleReturnScroll = function settleReturnScroll() {
+          returnScrollAttempts += 1;
+          showSection("#" + initialSection, false);
+          checkSection();
+
+          if (returnScrollAttempts < 14) {
+            setTimeout(settleReturnScroll, returnScrollAttempts < 3 ? 80 : 220);
+          }
+        };
+
+        setTimeout(settleReturnScroll, 0);
+        window.addEventListener("load", settleReturnScroll);
+      }
 
       function revealAboutCards() {
         var threshold = window.innerHeight * 0.88;
