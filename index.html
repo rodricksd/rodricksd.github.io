@@ -1136,6 +1136,8 @@
         detail: 'Completed the Harvard Business School Online Business Analytics certificate programme (2024), building rigour in data-driven decision-making, statistical analysis, and translating data insights into strategic business decisions.',
         img: 'assets/content/harvard_online_buisness_analytics.jpeg',
         imgAlt: 'Harvard Business School Certificate',
+        verifyLink: 'https://online.hbs.edu/verify-certificate?dvid=LJTB94FH',
+        verifyLabel: 'Verify Harvard certificate',
         tags: ['Certification', 'Harvard']
       },
       'k2024b': {
@@ -1278,6 +1280,7 @@
           '<h3 class="sp-detail-title">' + d.title + '</h3>' +
           '<p class="sp-detail-text">' + d.detail + '</p>' +
           '<div class="sp-detail-tags">' + d.tags.map(function(t){ return '<span class="dot-tag">' + t + '</span>'; }).join('') + '</div>' +
+          (d.verifyLink ? '<a class="sp-verify-link" href="' + d.verifyLink + '" target="_blank" rel="noopener noreferrer">' + d.verifyLabel + ' <span aria-hidden="true">↗</span></a>' : '') +
         '</div>';
       var credentialHtml = d.credential
         ? '<a class="sp-credential-preview" href="' + d.link + '" target="_blank" rel="noopener noreferrer" aria-label="View ' + d.credential.name + ' credential on Credly">' +
