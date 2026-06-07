@@ -1654,6 +1654,34 @@ body {
   max-height: 440px;
 }
 
+.sp-stage {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) 4px;
+  min-width: 0;
+  position: relative;
+}
+
+.sp-progress-track {
+  background: rgba(197, 168, 128, 0.08);
+  grid-row: 2;
+  height: 4px;
+  overflow: hidden;
+}
+
+.sp-progress-fill {
+  background: linear-gradient(90deg, rgba(197, 168, 128, 0.55), rgba(197, 168, 128, 0.92));
+  height: 100%;
+  width: 0;
+}
+
+.sp-progress-fill.is-running {
+  animation: spProgressFill 9s linear forwards;
+}
+
+.sp-wrap.is-paused .sp-progress-fill.is-running {
+  animation-play-state: paused;
+}
+
 .sp-list-item {
   display: grid;
   grid-template-columns: 32px 1fr;
@@ -1711,6 +1739,7 @@ body {
 .sp-cat-leadership { background: rgba(165, 48, 48, 0.1);    color: var(--accent); }
 
 .sp-detail {
+  grid-row: 1;
   overflow-y: auto;
   max-height: 440px;
 }
@@ -1830,7 +1859,7 @@ body {
 
 .sp-detail-body {
   flex: 1;
-  padding: 18px 20px 22px;
+  padding: 18px 20px 76px;
   overflow-y: auto;
 }
 
@@ -1857,6 +1886,59 @@ body {
 }
 
 .sp-detail-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.sp-global-controls {
+  align-items: center;
+  bottom: 18px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  right: 20px;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.sp-control {
+  align-items: center;
+  background: rgba(12, 22, 34, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.34);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 30px;
+  height: 42px;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+  pointer-events: auto;
+  text-decoration: none;
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+  width: 42px;
+}
+
+.sp-control i {
+  line-height: 1;
+}
+
+.sp-control:hover,
+.sp-control:focus-visible {
+  background: rgba(12, 22, 34, 0.5);
+  border-color: rgba(197, 168, 128, 0.62);
+  color: #C5A880;
+  outline: none;
+  transform: translateY(2px);
+}
+
+.sp-control:focus {
+  outline: none;
+}
+
+@keyframes spProgressFill {
+  from { width: 0; }
+  to { width: 100%; }
+}
 
 @media (max-width: 640px) {
   .sp-wrap {

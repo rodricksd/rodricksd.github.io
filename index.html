@@ -721,7 +721,20 @@
                 </div>
               </div>
             </div>
-            <div id="sp-detail" class="sp-detail"></div>
+            <div class="sp-stage">
+              <div id="sp-detail" class="sp-detail"></div>
+              <div class="sp-global-controls" aria-label="Recognition navigation">
+                <button class="sp-control sp-control--prev" type="button" onclick="selectAdjacentSplit(-1)" aria-label="Previous recognition">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </button>
+                <button class="sp-control sp-control--next" type="button" onclick="selectAdjacentSplit(1)" aria-label="Next recognition">
+                  <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </button>
+              </div>
+              <div class="sp-progress-track" aria-hidden="true">
+                <div class="sp-progress-fill" id="sp-progress-fill"></div>
+              </div>
+            </div>
           </div>
 
           <div class="awards-activity-cta scroll-reveal">
@@ -1180,7 +1193,80 @@
       }
     };
 
-    function selectSplit(key) {
+    var splitKeys = ['k2026', 'k2025', 'k2024a', 'k2024b', 'k2023', 'k2021', 'k2019', 'k2018a', 'k2018b'];
+    var splitTimer;
+    var splitInterval = 9000;
+    var splitStartedAt = 0;
+    var splitRemaining = splitInterval;
+
+    function getSplitIndex(key) {
+      var index = splitKeys.indexOf(key);
+      return index >= 0 ? index : 0;
+    }
+
+    function getActiveSplitKey() {
+      var active = document.querySelector('.sp-list-item.is-active');
+      return active ? active.dataset.key : splitKeys[0];
+    }
+
+    function restartSplitProgress() {
+      var progress = document.getElementById('sp-progress-fill');
+      if (!progress) return;
+      progress.classList.remove('is-running');
+      void progress.offsetWidth;
+      progress.classList.add('is-running');
+    }
+
+    function stopSplitAuto() {
+      window.clearInterval(splitTimer);
+    }
+
+    function isSplitPaused() {
+      var splitWrap = document.querySelector('.sp-wrap');
+      return !!(splitWrap && splitWrap.classList.contains('is-paused'));
+    }
+
+    function scheduleSplitAuto(delay) {
+      stopSplitAuto();
+      splitStartedAt = Date.now();
+      splitRemaining = delay;
+      splitTimer = window.setTimeout(function() {
+        selectSplit(splitKeys[(getSplitIndex(getActiveSplitKey()) + 1) % splitKeys.length], false);
+        startSplitAuto(false);
+      }, delay);
+    }
+
+    function startSplitAuto(resetProgress) {
+      if (resetProgress !== false) {
+        splitRemaining = splitInterval;
+        restartSplitProgress();
+      }
+      scheduleSplitAuto(splitRemaining);
+    }
+
+    function pauseSplitAuto() {
+      if (splitStartedAt) {
+        splitRemaining = Math.max(0, splitRemaining - (Date.now() - splitStartedAt));
+      }
+      stopSplitAuto();
+      var splitWrap = document.querySelector('.sp-wrap');
+      if (splitWrap) splitWrap.classList.add('is-paused');
+    }
+
+    function resumeSplitAuto() {
+      var splitWrap = document.querySelector('.sp-wrap');
+      if (splitWrap) splitWrap.classList.remove('is-paused');
+      startSplitAuto(false);
+    }
+
+    function selectAdjacentSplit(direction) {
+      selectSplit(splitKeys[(getSplitIndex(getActiveSplitKey()) + direction + splitKeys.length) % splitKeys.length]);
+    }
+
+    function selectSplit(key, restartAuto) {
+      if (restartAuto !== false) {
+        stopSplitAuto();
+      }
       var d = splitData[key];
       document.querySelectorAll('.sp-list-item').forEach(function(el) {
         el.classList.toggle('is-active', el.dataset.key === key);
@@ -1216,10 +1302,27 @@
       } else {
         panel.innerHTML = bodyHtml;
       }
+      restartSplitProgress();
+      splitRemaining = splitInterval;
+      if (restartAuto !== false && !isSplitPaused()) {
+        startSplitAuto(false);
+      }
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-      selectSplit('k2026');
+      var splitWrap = document.querySelector('.sp-wrap');
+      selectSplit('k2026', false);
+      startSplitAuto();
+      if (splitWrap) {
+        splitWrap.addEventListener('mouseenter', pauseSplitAuto);
+        splitWrap.addEventListener('mouseleave', resumeSplitAuto);
+        splitWrap.addEventListener('focusin', pauseSplitAuto);
+        splitWrap.addEventListener('focusout', function(e) {
+          if (!splitWrap.contains(e.relatedTarget)) {
+            resumeSplitAuto();
+          }
+        });
+      }
     });
   </script>
   </body>
