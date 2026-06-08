@@ -363,6 +363,23 @@ body {
   color: #1B263B;
 }
 
+.article-body a {
+  color: #A53030;
+  text-decoration: none;
+}
+
+.article-body a:hover {
+  text-decoration: underline;
+}
+
+.shortlist-inline-logo {
+  height: 20px;
+  width: auto;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+}
+
 .callout {
   border-left: 3px solid #C5A880;
   padding: 16px 22px;
