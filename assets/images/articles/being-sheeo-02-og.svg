@@ -12,7 +12,7 @@
     <tspan x="132" dy="56">You Have to Choose One.</tspan>
   </text>
 
-  <text x="132" y="365" font-family="Lato, Arial, sans-serif" font-size="25" font-weight="400" fill="#1B263B">
+  <text x="132" y="365" font-family="Lato, Arial, sans-serif" font-size="25" font-weight="400" font-style="italic" fill="#1B263B">
     <tspan x="132" dy="0">My job is not to build the product. My job is to hold</tspan>
     <tspan x="132" dy="38">the vision clearly enough that my team can build it.</tspan>
   </text>
