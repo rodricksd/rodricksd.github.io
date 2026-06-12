@@ -816,6 +816,44 @@ body {
   margin: 32px 0 0 !important;
 }
 
+/* ── References ── */
+.article-references {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(27, 38, 59, 0.12);
+}
+
+.article-references .references-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  margin-bottom: 8px;
+}
+
+.article-references ol {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.article-references li {
+  font-size: 13px;
+  color: #8a8a8a;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.article-references a {
+  color: #8a8a8a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.article-references a:hover {
+  color: #C5A880;
+}
+
 /* ── Website CTA ── */
 .article-website-cta {
   display: flex;
